@@ -15,7 +15,7 @@ const Footer = () => {
               whileHover={{ scale: 1.05 }}
               className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
             >
-              Alex Johnson
+              Pavan Kumar Adapala
             </motion.div>
             <p className="text-gray-400">
               DevOps Engineer passionate about cloud infrastructure, automation, 
@@ -49,9 +49,9 @@ const Footer = () => {
           <div>
             <h3 className="text-white font-semibold mb-4">Get In Touch</h3>
             <div className="space-y-2 text-gray-400">
-              <p>📧 alex.johnson@email.com</p>
-              <p>📱 +1 (555) 123-4567</p>
-              <p>📍 San Francisco, CA</p>
+              <p>📧 pavankumar.adapala.msc@email.com</p>
+              <p>📱 +4915751763888</p>
+              <p>📍 07747 Jena, Germany</p>
             </div>
           </div>
         </div>
