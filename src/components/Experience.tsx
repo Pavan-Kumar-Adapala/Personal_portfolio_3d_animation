@@ -1,0 +1,208 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { Briefcase, Calendar, MapPin, TrendingUp } from 'lucide-react';
+
+const Experience = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, threshold: 0.2 });
+
+  const experiences = [
+    {
+      title: 'Senior DevOps Engineer',
+      company: 'TechForward Solutions',
+      location: 'San Francisco, CA',
+      period: '2023 - Present',
+      description: [
+        'Led migration of legacy infrastructure to AWS EKS, reducing operational costs by 40%',
+        'Implemented GitOps workflows with ArgoCD, improving deployment frequency by 300%',
+        'Designed and maintained CI/CD pipelines using Jenkins and GitHub Actions',
+        'Mentored junior engineers and established DevOps best practices across teams'
+      ],
+      technologies: ['AWS', 'Kubernetes', 'Terraform', 'Jenkins', 'Docker', 'ArgoCD'],
+      achievements: '40% cost reduction, 300% deployment improvement'
+    },
+    {
+      title: 'DevOps Engineer',
+      company: 'CloudScale Innovations',
+      location: 'Austin, TX',
+      period: '2022 - 2023',
+      description: [
+        'Automated infrastructure provisioning using Terraform and Ansible',
+        'Set up comprehensive monitoring and alerting with Prometheus and Grafana',
+        'Reduced deployment time from 2 hours to 15 minutes through pipeline optimization',
+        'Collaborated with development teams to implement container-first architecture'
+      ],
+      technologies: ['Azure', 'Docker', 'Terraform', 'Ansible', 'Prometheus', 'Grafana'],
+      achievements: '87% deployment time reduction'
+    },
+    {
+      title: 'Junior DevOps Engineer',
+      company: 'StartupTech Inc.',
+      location: 'Remote',
+      period: '2021 - 2022',
+      description: [
+        'Built and maintained CI/CD pipelines for microservices architecture',
+        'Implemented infrastructure monitoring and log aggregation solutions',
+        'Participated in on-call rotation and incident response procedures',
+        'Contributed to infrastructure documentation and runbooks'
+      ],
+      technologies: ['AWS', 'Docker', 'GitLab CI', 'ELK Stack', 'Python', 'Bash'],
+      achievements: 'Foundation in DevOps practices'
+    }
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { x: -50, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  return (
+    <section id="experience" ref={ref} className="py-20 bg-gray-900">
+      <div className="container mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Professional Experience
+          </h2>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            My journey in DevOps and cloud engineering, building scalable infrastructure and 
+            streamlining development workflows
+          </p>
+        </motion.div>
+
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            {experiences.map((exp, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="relative mb-12"
+              >
+                {/* Timeline line */}
+                <motion.div 
+                  className="absolute left-8 top-16 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 to-purple-500"
+                  initial={{ height: 0 }}
+                  animate={isInView ? { height: '100%' } : { height: 0 }}
+                  transition={{ duration: 1, delay: index * 0.2 }}
+                ></motion.div>
+                
+                {/* Timeline dot */}
+                <motion.div
+                  initial={{ scale: 0, rotate: 0 }}
+                  animate={isInView ? { scale: 1, rotate: 360 } : { scale: 0, rotate: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.2 + 0.3 }}
+                  className="absolute left-6 top-8 w-5 h-5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full border-4 border-gray-900 z-10"
+                ></motion.div>
+                
+                <div className="ml-20">
+                  <motion.div
+                    whileHover={{ scale: 1.02, y: -5 }}
+                    className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl p-8 shadow-2xl border border-gray-600 hover:border-blue-500/50 transition-all"
+                  >
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                      <div>
+                        <motion.h3 
+                          className="text-2xl font-bold text-white mb-2"
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                          transition={{ duration: 0.5, delay: index * 0.1 }}
+                        >
+                          {exp.title}
+                        </motion.h3>
+                        <div className="flex items-center text-blue-400 mb-2">
+                          <Briefcase size={18} className="mr-2" />
+                          <span className="font-medium">{exp.company}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="flex flex-col md:items-end space-y-2">
+                        <div className="flex items-center text-gray-400">
+                          <Calendar size={16} className="mr-2" />
+                          <span>{exp.period}</span>
+                        </div>
+                        <div className="flex items-center text-gray-400">
+                          <MapPin size={16} className="mr-2" />
+                          <span>{exp.location}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Achievement Badge */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+                      className="flex items-center mb-4 bg-green-500/20 border border-green-500/50 rounded-lg p-2 w-fit"
+                    >
+                      <TrendingUp size={16} className="text-green-400 mr-2" />
+                      <span className="text-green-400 text-sm font-medium">{exp.achievements}</span>
+                    </motion.div>
+                    
+                    <ul className="space-y-2 mb-6">
+                      {exp.description.map((item, i) => (
+                        <motion.li
+                          key={i}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                          transition={{ duration: 0.5, delay: index * 0.1 + i * 0.1 }}
+                          className="text-gray-300 flex items-start"
+                        >
+                          <span className="text-blue-400 mr-2 mt-2">•</span>
+                          {item}
+                        </motion.li>
+                      ))}
+                    </ul>
+                    
+                    <div className="flex flex-wrap gap-2">
+                      {exp.technologies.map((tech, i) => (
+                        <motion.span
+                          key={tech}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                          transition={{ duration: 0.3, delay: index * 0.1 + i * 0.05 }}
+                          whileHover={{ scale: 1.1, y: -2 }}
+                          className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-300 px-3 py-1 rounded-full text-sm border border-blue-500/30 hover:border-blue-400/50 transition-all cursor-default"
+                        >
+                          {tech}
+                        </motion.span>
+                      ))}
+                    </div>
+                  </motion.div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Experience;
