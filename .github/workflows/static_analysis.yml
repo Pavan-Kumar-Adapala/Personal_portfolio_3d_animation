@@ -80,10 +80,11 @@ jobs:
         uses: github/codeql-action/analyze@v3
         with:
           upload: false # prevents upload error
+          output: ./codeql-results  # explicitly specify output folder
 
       - name: Upload CodeQL results
         uses: actions/upload-artifact@v4
         with:
           name: codeql-sarif
-          path: ./codeql-results/codeql.sarif
+          path: ./codeql-results
           if-no-files-found: warn
