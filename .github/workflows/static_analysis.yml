@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     # This job runs only for merge requests, ensuring that static analysis is performed
     # when code is merged into the main branch.
-    if: github.event_name == 'pull_request' && github.ref == 'refs/heads/development'
+    if: github.event_name == 'pull_request' && github.base_ref == 'Prod'
     needs: linting # Ensure linting job is completed before running static analysis
     permissions: # This section defines the permissions for the job
       actions: read
