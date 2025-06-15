@@ -13,7 +13,14 @@ jobs:
   linting:
     name: RUN ESLint
     runs-on: ubuntu-latest
-
+    # This job runs for both pull requests to the development branch,
+    # ensuring that code quality checks are performed before merging. 
+    if: github.event_name == 'pull_request' && github.base_ref == 'development'
+    needs: [] # No dependencies, runs independently
+    permissions: # This section defines the permissions for the job
+      actions: read
+      contents: read
+      security-events: write # The 'security-events: write' permission is necessary for the job to report security issues.
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -75,6 +82,6 @@ jobs:
         uses: github/codeql-action/analyze@v3
 
       - name: Upload CodeQL results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: codeql-results
