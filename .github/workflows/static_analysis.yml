@@ -35,7 +35,7 @@ jobs:
           
       - name: Upload ESLint report
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: eslint-results
           path: CI_logs/eslint_output.log
@@ -70,7 +70,7 @@ jobs:
           # build-command: npm run build
           # If your project requires a specific build command, uncomment the line above
           # and replace 'npm run build' with your actual build command.
-          
+
       - name: Perform CodeQL analysis
         uses: github/codeql-action/analyze@v3
 
