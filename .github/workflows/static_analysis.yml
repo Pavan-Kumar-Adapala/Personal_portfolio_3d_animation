@@ -65,11 +65,12 @@ jobs:
 
       - name: Auto build
         uses: github/codeql-action/autobuild@v3
-        with:
+        # with:
           # Optional: Specify a custom build command if needed
           # build-command: npm run build
           # If your project requires a specific build command, uncomment the line above
           # and replace 'npm run build' with your actual build command.
+          
       - name: Perform CodeQL analysis
         uses: github/codeql-action/analyze@v3
 
