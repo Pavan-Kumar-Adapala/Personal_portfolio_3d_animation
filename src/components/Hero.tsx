@@ -133,7 +133,7 @@ const Hero = () => {
           >
             Passionate about building scalable, resilient cloud infrastructure
             and streamlining deployment pipelines. 2+ years of experience in
-            AWS, Kubernetes, and modern DevOps practices.
+            AWS, Containerization technologies, and modern DevOps practices.
           </motion.div>
 
           <motion.div
