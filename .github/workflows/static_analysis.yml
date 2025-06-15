@@ -13,9 +13,10 @@ jobs:
   linting:
     name: RUN ESLint
     runs-on: ubuntu-latest
-    # This job runs for both pull requests and pushes to the main branch,
+    # This job runs for both pull requests to the development branch,
     # ensuring that code quality checks are performed before merging. 
-    if: github.event_name == 'pull_request' && github.ref == 'refs/heads/development'
+    if: github.event_name == 'pull_request' && github.base_ref == 'development'
+    needs: [] # No dependencies, runs independently
     permissions: # This section defines the permissions for the job
       actions: read
       contents: read
