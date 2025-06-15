@@ -1,0 +1,79 @@
+name: Static Code Quality
+
+on:
+  pull_request:
+    branches:
+      - development
+  push:
+    branches:
+      - Prod
+  workflow_dispatch: # Allows manual triggering of the workflow
+
+jobs:
+  linting:
+    name: RUN ESLint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.1.0'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci # Faster and more reliable for CI/CD pipelines than npm install
+
+      - name: Run ESLint
+        run: |
+          mkdir -p CI_logs
+          npx eslint . --ext .js,.ts,.tsx --format json | tee CI_logs/eslint_output.log
+        continue-on-error: false
+          
+      - name: Upload ESLint report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: eslint-results
+          path: CI_logs/eslint_output.log
+
+  static_analysis:
+    name: Run Static Code Analysis (CodeQL)
+    runs-on: ubuntu-latest
+    # This job runs only for merge requests, ensuring that static analysis is performed
+    # when code is merged into the main branch.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/Prod'
+    needs: linting # Ensure linting job is completed before running static analysis
+    permissions: # This section defines the permissions for the job
+      actions: read
+      contents: read
+      security-events: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: javascript,typescript # Specify the languages to analyze
+          # Optional: Specify a custom configuration file for CodeQL
+          # config-file: .github/codeql/codeql-config.yml
+
+      - name: Auto build
+        uses: github/codeql-action/autobuild@v3
+        with:
+          # Optional: Specify a custom build command if needed
+          # build-command: npm run build
+          # If your project requires a specific build command, uncomment the line above
+          # and replace 'npm run build' with your actual build command.
+      - name: Perform CodeQL analysis
+        uses: github/codeql-action/analyze@v3
+
+      - name: Upload CodeQL results
+        uses: actions/upload-artifact@v3
+        with:
+          name: codeql-results
