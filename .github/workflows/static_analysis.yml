@@ -4,8 +4,6 @@ on:
   pull_request:
     branches:
       - development
-  push:
-    branches:
       - Prod
   workflow_dispatch: # Allows manual triggering of the workflow
 
@@ -13,9 +11,9 @@ jobs:
   linting:
     name: RUN ESLint
     runs-on: ubuntu-latest
-    # This job runs for both pull requests to the development branch,
+    # This job runs for pull requests,
     # ensuring that code quality checks are performed before merging. 
-    if: github.event_name == 'pull_request' && github.base_ref == 'development'
+    if: github.event_name == 'pull_request' 
     needs: [] # No dependencies, runs independently
     permissions: # This section defines the permissions for the job
       actions: read
