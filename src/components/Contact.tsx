@@ -58,8 +58,8 @@ const Contact = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'pavankumar.adapala.msc@email.com',
-      href: 'mailto:pavankumar.adapala.msc@email.com',
+      value: 'pavankumar.adapala.msc@gmail.com',
+      href: 'mailto:pavankumar.adapala.msc@gmail.com',
       color: 'from-blue-500 to-cyan-500',
     },
     {
@@ -230,7 +230,7 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
-                    placeholder="your.email@example.com"
+                    placeholder="your.gmail@example.com"
                   />
                 </div>
               </div>
