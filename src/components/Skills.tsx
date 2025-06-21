@@ -19,25 +19,81 @@ const Skills = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.2 });
 
-  const technicalSkills = [
-    { name: 'AWS / Azure / GCP', level: 85, icon: Cloud, color: 'from-blue-500 to-cyan-500' },
-    { name: 'Kubernetes / Docker', level: 90, icon: Server, color: 'from-purple-500 to-pink-500' },
-    { name: 'CI/CD Pipelines', level: 88, icon: GitBranch, color: 'from-green-500 to-teal-500' },
-    { name: 'Infrastructure as Code', level: 82, icon: Terminal, color: 'from-orange-500 to-red-500' },
-    { name: 'Monitoring & Logging', level: 80, icon: Database, color: 'from-indigo-500 to-blue-500' },
-    { name: 'Security & Compliance', level: 75, icon: Shield, color: 'from-red-500 to-pink-500' },
+
+  const technicalSkillGroups = [
+    {
+      category: "Programming & Scripting",
+      icon: Terminal,
+      skills: [
+        { name: "Python", level: 90, icon: Terminal, color: "from-yellow-400 to-yellow-600" },
+        { name: "Bash Scripting", level: 85, icon: Terminal, color: "from-red-500 to-red-700" },
+      ],
+    },
+    {
+      category: "Cloud Platforms",
+      icon: Cloud,
+      skills: [
+        { name: "AWS", level: 90, icon: Cloud, color: "from-blue-500 to-cyan-500" },
+        { name: "Azure", level: 40, icon: Cloud, color: "from-indigo-500 to-blue-400" },
+      ],
+    },
+    {
+      category: "CI/CD Tools",
+      icon: GitBranch,
+      skills: [
+        { name: "Jenkins", level: 90, icon: GitBranch, color: "from-green-500 to-emerald-500" },
+        { name: "GitHub Actions", level: 70, icon: GitBranch, color: "from-pink-500 to-purple-500" },
+        { name: "GitLab CI", level: 40, icon: GitBranch, color: "from-orange-500 to-yellow-500" },
+        { name: "ArgoCD", level: 40, icon: GitBranch, color: "from-red-500 to-pink-500" },
+      ],
+    },
+    {
+      category: "Configuration Management an IaC",
+      icon: Terminal,
+      skills: [
+        { name: "Ansible", level: 70, icon: Terminal, color: "from-green-500 to-lime-500" },
+         { name: "Terraform", level: 70, icon: Terminal, color: "from-green-400 to-green-600" },
+      ],
+    },
+    {
+      category: "Containerization & Orchestration",
+      icon: Server,
+      skills: [
+        { name: "Docker", level: 85, icon: Server, color: "from-blue-400 to-blue-600" },
+        { name: "Kubernetes", level: 70, icon: Server, color: "from-purple-500 to-indigo-500" },
+      ],
+    },
+    {
+      category: "Databases",
+      icon: Database,
+      skills: [
+        { name: "MySQL", level: 80, icon: Database, color: "from-blue-300 to-blue-500" },
+        { name: "PostgreSQL", level: 70, icon: Database, color: "from-purple-300 to-purple-500" },
+      ],
+    },
+    {
+      category: "Security & Monitoring",
+      icon: Shield,
+      skills: [
+        { name: "AWS IAM", level: 80, icon: Shield, color: "from-blue-600 to-blue-800" },
+        { name: "Prometheus", level: 70, icon: Shield, color: "from-yellow-500 to-yellow-700" },
+        { name: "Grafana", level: 60, icon: Shield, color: "from-purple-600 to-purple-800" },
+      ],
+    }
   ];
+
 
   const personalSkills = [
     { name: 'Problem Solving', level: 92, icon: Lightbulb },
+    { name: 'Quick Learner', level: 92, icon: Lightbulb },
     { name: 'Team Collaboration', level: 88, icon: Users },
     { name: 'Communication', level: 85, icon: MessageSquare },
   ];
 
   const languages = [
-    { name: 'English', level: 100, flag: '🇺🇸' },
-    { name: 'Spanish', level: 75, flag: '🇪🇸' },
-    { name: 'French', level: 60, flag: '🇫🇷' },
+    { name: 'Telugu', levelCode: 'C2', levelLabel: 'Native', flag: 'te' },
+    { name: 'English', levelCode: 'C1', levelLabel: 'Proficient', flag: 'us' },
+    { name: 'German', levelCode: 'B1', levelLabel: 'Conversational', flag: 'de' },
   ];
 
   const containerVariants = {
@@ -91,32 +147,48 @@ const Skills = () => {
               Technical Skills
             </h3>
             
-            {technicalSkills.map((skill, index) => (
-              <motion.div
-                key={skill.name}
-                variants={itemVariants}
-                whileHover={{ scale: 1.02, x: 10 }}
-                className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-4 hover:bg-gray-700/50 transition-all border border-gray-700 hover:border-blue-500/50"
-              >
-                <div className="flex items-center mb-3">
-                  <div className={`p-2 rounded-lg bg-gradient-to-r ${skill.color} mr-3`}>
-                    <skill.icon size={20} className="text-white" />
+          {technicalSkillGroups.map((group) => (
+            <motion.div
+              key={group.category}
+              variants={itemVariants}
+              className="space-y-4 mb-8"
+            >
+              {/* Category Title */}
+              <div className="flex items-center mb-4">
+                <group.icon className="text-blue-400 mr-2" />
+                <h4 className="text-xl font-semibold text-white">{group.category}</h4>
+              </div>
+
+              {/* Skills Under Category */}
+              {group.skills.map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.02, x: 10 }}
+                  className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-4 hover:bg-gray-700/50 transition-all border border-gray-700 hover:border-blue-500/50"
+                >
+                  <div className="flex items-center mb-3">
+                    <div className={`p-2 rounded-lg bg-gradient-to-r ${skill.color} mr-3`}>
+                      <skill.icon size={20} className="text-white" />
+                    </div>
+                    <span className="text-white font-medium">{skill.name}</span>
+                    <span className="ml-auto text-gray-400">{skill.level}%</span>
                   </div>
-                  <span className="text-white font-medium">{skill.name}</span>
-                  <span className="ml-auto text-gray-400">{skill.level}%</span>
-                </div>
-                
-                <div className="w-full bg-gray-700 rounded-full h-2">
-                  <motion.div
-                    className={`h-2 rounded-full bg-gradient-to-r ${skill.color}`}
-                    initial={{ width: 0 }}
-                    animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
-                    transition={{ duration: 1, delay: index * 0.1 }}
-                  />
-                </div>
-              </motion.div>
-            ))}
+
+                  <div className="w-full bg-gray-700 rounded-full h-2">
+                    <motion.div
+                      className={`h-2 rounded-full bg-gradient-to-r ${skill.color}`}
+                      initial={{ width: 0 }}
+                      animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
+                      transition={{ duration: 1, delay: index * 0.1 }}
+                    />
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          ))}
           </motion.div>
+
 
           {/* Right Side - Soft Skills & Languages */}
           <div className="space-y-8">
@@ -158,7 +230,7 @@ const Skills = () => {
                 </motion.div>
               ))}
             </motion.div>
-
+            
             {/* Languages */}
             <motion.div
               variants={containerVariants}
@@ -181,7 +253,8 @@ const Skills = () => {
                   <div className="flex items-center mb-3">
                     <div className="text-2xl mr-3">{language.flag}</div>
                     <span className="text-white font-medium">{language.name}</span>
-                    <span className="ml-auto text-gray-400">{language.level === 100 ? 'Native' : `${language.level}%`}</span>
+                    <span className="ml-auto text-gray-400">{language.levelLabel} ({language.levelCode})</span>
+                    {/* <span className="ml-auto text-gray-400">{language.level === 100 ? 'Native' : `${language.level}%`}</span> */}
                   </div>
                   
                   <div className="w-full bg-gray-700 rounded-full h-2">

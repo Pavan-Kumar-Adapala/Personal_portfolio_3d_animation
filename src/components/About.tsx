@@ -52,7 +52,7 @@ const About = () => {
                   className="text-gray-300 text-lg leading-relaxed"
                 >
                   I specialize in building scalable, secure, and efficient cloud
-                  solutions using AWS, Kubernetes, and modern DevOps practices.
+                  solutions using Python and Bash scripting, AWS, and modern DevOps practices.
                   My goal is to bridge the gap between development and
                   operations, ensuring smooth and reliable software delivery.
                 </motion.p>
@@ -65,10 +65,9 @@ const About = () => {
                   transition={{ duration: 0.8, delay: 0.8 }}
                   className="text-gray-300 text-lg leading-relaxed"
                 >
-                  When I'm not optimizing infrastructure or writing automation
-                  scripts, you'll find me exploring new technologies,
-                  contributing to open-source projects, or sharing knowledge
-                  with the DevOps community.
+                  Outside of optimizing infrastructure and writing automation scripts, 
+                  I am passionate about building my own projects to explore new tools and technologies, 
+                  while actively engaging with the DevOps community to share and grow knowledge.
                 </motion.p>
               </div>
 
