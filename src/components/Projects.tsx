@@ -11,51 +11,44 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'Multi-Cloud Kubernetes Platform',
-      description: 'Designed and implemented a multi-cloud Kubernetes platform supporting AWS, Azure, and GCP with automated failover and load balancing.',
+      title: 'Deployment of Django Web Application on AWS',
+      description: 'Deployed the web application on a scalable 3-tier architecture, implementing Auto Scaling and an Elastic Load Balancer (ELB) to ensure a secure and scalable AWS infrastructure.',
       image: 'https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['Kubernetes', 'Terraform', 'AWS', 'Azure', 'GCP', 'Helm'],
-      architecture: 'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=800',
-      github: 'https://github.com/alexjohnson/k8s-multicloud',
-      demo: 'https://demo.k8s-platform.com',
-      category: 'Infrastructure',
+      technologies: ['AWS (CodePipeline, EC2, VPC, IAM, Route 53, Elastic Load Balancer, AutoScaling, RDS, S3, SES, CloudWatch)', 'Git', 'GitHub', 'Linux (Ubuntu)', 'Python & Bash scripting', 'Nginx Web Server'],
+      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation/src/img/aws_django.png',
+      github: '#',
+      demo: '#',
+      category: '3-Tier Architecture',
       detailedDescription: [
-        'Architected a robust multi-cloud Kubernetes platform spanning AWS EKS, Azure AKS, and Google GKE',
-        'Implemented automated failover mechanisms with 99.9% uptime guarantee',
-        'Designed cross-cloud networking with VPN gateways and service mesh integration',
-        'Built custom operators for workload distribution and resource optimization',
-        'Integrated monitoring stack with Prometheus, Grafana, and custom alerting rules',
-        'Achieved 40% cost reduction through intelligent resource scheduling'
+        'Designed and deployed AWS cloud infrastructure to host a Django-based vehicle quality testing application, ensuring high availability and cost efficiency',
+        'Configured EC2 Auto Scaling and Load Balancer to optimize performance',
+        'Implemented custom monitoring dashboard and alert mechanisum using AWS CloudWatch and SES services, enabling proactive issue resolution',
+        'Secured RDS–EC2 data flow using VPC and IAM policies to enforce least-privilege access',
+        'Improved query performance by 30% and reduced operational costs by 25% through cloud migration'
       ],
       metrics: {
         uptime: '99.9%',
-        costReduction: '40%',
-        deploymentTime: '15 min',
-        clusters: '12'
+        operationalcostReduction: '25%',
+        queryperformanceImprovement: '30%'
       }
     },
     {
-      title: 'CI/CD Pipeline Automation',
-      description: 'Built comprehensive CI/CD pipelines with automated testing, security scanning, and multi-environment deployments using GitOps principles.',
+      title: 'Optimization of CI/CD Processes and Monitoring Systems for Autonomous Parking Software Development',
+      description: 'Optimized Jenkins CI/CD pipelines to accelerate the software development lifecycle (SDLC) and deliver high-quality parking software by implementing Python automation scripts and enhancing the feedback mechanism.',
       image: 'https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['Jenkins', 'GitLab CI', 'ArgoCD', 'SonarQube', 'Docker', 'Kubernetes'],
-      architecture: 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=800',
-      github: 'https://github.com/alexjohnson/cicd-automation',
-      demo: 'https://pipeline.demo.com',
-      category: 'DevOps',
+      technologies: ['Python & Bash Scripting', 'RESTAPIs', 'Jenkins', 'JFrog Artifactory', 'Git & Bitbucket', 'JIRA', 'Grafana', 'PostgreSQL'],
+      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation/src/img/ADAS_CICD.png',
+      github: '#',
+      demo: '#',
+      category: 'DevOps, ADAS',
       detailedDescription: [
-        'Developed end-to-end CI/CD pipelines supporting 50+ microservices',
-        'Integrated automated security scanning with SAST, DAST, and dependency checks',
-        'Implemented GitOps workflows with ArgoCD for declarative deployments',
-        'Built custom pipeline templates reducing setup time by 80%',
-        'Established automated rollback mechanisms with health checks',
-        'Achieved zero-downtime deployments with blue-green strategies'
+        'Integrated Python scripts into Nightly CTC and smoke test pipelines to extract test reports and generate summary files, resulting in a 30% reduction in debugging time',
+        'Collaborated on developing a CI pipeline to automate PDX container creation for flashing the Parking ECU (FPM Core), leading to enhanced security standards',
+        'Developed a centralized Grafana dashboard using advanced PostgreSQL queries to monitor the development process in real time and support data-driven decision-making across parking software projects'
       ],
       metrics: {
-        services: '50+',
-        deploymentFreq: '300%',
-        setupReduction: '80%',
-        downtime: '0 min'
+        Reduceddebuggingtime: '30%',
+        Qualitystandard: 'ISO 9001',
       }
     },
     {

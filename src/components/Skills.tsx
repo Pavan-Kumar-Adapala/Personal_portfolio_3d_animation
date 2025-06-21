@@ -26,14 +26,14 @@ const Skills = () => {
       icon: Terminal,
       skills: [
         { name: "Python", level: 90, icon: Terminal, color: "from-yellow-400 to-yellow-600" },
-        { name: "Bash Scripting", level: 85, icon: Terminal, color: "from-red-500 to-red-700" },
+        { name: "Bash Scripting", level: 80, icon: Terminal, color: "from-red-500 to-red-700" },
       ],
     },
     {
       category: "Cloud Platforms",
       icon: Cloud,
       skills: [
-        { name: "AWS", level: 90, icon: Cloud, color: "from-blue-500 to-cyan-500" },
+        { name: "AWS - IaaS, PaaS, SaaS", level: 90, icon: Cloud, color: "from-blue-500 to-cyan-500" },
         { name: "Azure", level: 40, icon: Cloud, color: "from-indigo-500 to-blue-400" },
       ],
     },
@@ -52,7 +52,8 @@ const Skills = () => {
       icon: Terminal,
       skills: [
         { name: "Ansible", level: 70, icon: Terminal, color: "from-green-500 to-lime-500" },
-         { name: "Terraform", level: 70, icon: Terminal, color: "from-green-400 to-green-600" },
+        { name: "Terraform", level: 70, icon: Terminal, color: "from-green-400 to-green-600" },
+        { name: "CloudFormation", level: 70, icon: Terminal, color: "from-green-400 to-green-600" },
       ],
     },
     {
@@ -72,17 +73,100 @@ const Skills = () => {
       ],
     },
     {
-      category: "Security & Monitoring",
+      category: "Monitoring & Logging",
       icon: Shield,
       skills: [
-        { name: "AWS IAM", level: 80, icon: Shield, color: "from-blue-600 to-blue-800" },
+        { name: "CloudWatch", level: 90, icon: Shield, color: "from-blue-600 to-blue-800" },
         { name: "Prometheus", level: 70, icon: Shield, color: "from-yellow-500 to-yellow-700" },
-        { name: "Grafana", level: 60, icon: Shield, color: "from-purple-600 to-purple-800" },
+        { name: "Grafana", level: 70, icon: Shield, color: "from-purple-600 to-purple-800" },
+      ],
+    },
+    {
+      category: "OS & Virtualization",
+      icon: Server,
+      skills: [
+        { name: "Linux (Ubuntu, REHL9)", level: 90, icon: Server, color: "from-gray-600 to-gray-800" },
+        { name: "Windows Server", level: 60, icon: Server, color: "from-blue-300 to-blue-500" },
+        { name: "VMware", level: 70, icon: Server, color: "from-green-400 to-green-600" }
+      ],
+    },
+    {
+      category: "Web Servers & Proxies",
+      icon: Server,
+      skills: [
+        { name: "Nginx", level: 85, icon: Server, color: "from-green-500 to-green-700" },
+        { name: "Apache", level: 70, icon: Server, color: "from-red-500 to-red-700" }
+      ],
+    },
+    {
+      category: "Network & Security ",
+      icon: Shield,
+      skills: [
+        { name: "IAM (Identity and Access Management)", level: 90, icon: Shield, color: "from-blue-500 to-blue-700" },
+        { name: "VPCs and Subnets", level: 95, icon: Shield, color: "from-blue-400 to-blue-600" },
+        { name: "Network Protocols (TCP/IP, DNS, HTTP, HTTPS)", level: 80, icon: Shield, color: "from-blue-500 to-blue-700" },
+        { name: "Firewall Configuration (NACLs, Secuiry Groups)", level: 85, icon: Shield, color: "from-red-500 to-red-700" },
+        { name: "VPN Setup", level: 90, icon: Shield, color: "from-purple-500 to-purple-700" },
+        { name: "Load Balancing", level: 80, icon: Shield, color: "from-green-500 to-green-700" },
+      ],
+    },
+    {
+      category: "Collaboration Tools",
+      icon: Users,
+      skills: [
+        { name: "Jira", level: 80, icon: Users, color: "from-blue-400 to-blue-600" },   
+        { name: "Confluence", level: 70, icon: Users, color: "from-purple-400 to-purple-600" },
+        { name: "Git", level: 95, icon: Users, color: "from-green-400 to-green-600" },
+        { name: "GitHub & Bitbucket ", level: 95, icon: Users, color: "from-blue-300 to-blue-500" },
+      ],
+    },
+    {
+      category: "Automation",
+      icon: Terminal,
+      skills: [
+        { name: "Webscraping and Webutomation", level: 85, icon: Terminal, color: "from-yellow-500 to-yellow-700" },
+        { name: "ETL pipeline", level: 90, icon: Terminal, color: "from-blue-400 to-blue-600" }
+      ],
+    },
+    {
+      category: "Software development",
+      icon: Terminal,
+      skills: [
+        { name: "Agile Methodologies", level: 85, icon: Terminal, color: "from-yellow-400 to-yellow-600" },
+        { name: "Scrum Framework", level: 80, icon: Terminal, color: "from-orange-400 to-orange-600" }
+      ],
+    },
+    {
+      category: "Data science & ML Frameworks",
+      icon: Terminal,   
+      skills: [
+        { name: "Pandas", level: 85, icon: Terminal, color: "from-blue-500 to-blue-700" },
+        { name: "NumPy", level: 80, icon: Terminal, color: "from-green-500 to-green-700" },
+        { name: "Scikit-learn", level: 75, icon: Terminal, color: "from-purple-500 to-purple-700" }
+      ],
+    },
+    {
+      category: "Data Visualization",
+      icon: Terminal,
+      skills: [
+        { name: "Matplotlib", level: 80, icon: Terminal, color: "from-red-500 to-red-700" },
+        { name: "Seaborn", level: 75, icon: Terminal, color: "from-pink-500 to-pink-700" },
+        { name: "Plotly, Qlik Sense", level: 70, icon: Terminal, color: "from-yellow-500 to-yellow-700" }
+      ],
+    },
+    {
+      category: "Web Development",
+      icon: Terminal,
+      skills: [
+        { name: "HTML & CSS", level: 90, icon: Terminal, color: "from-blue-300 to-blue-500" },
+        { name: "Django, FASTAPI", level: 55, icon: Terminal, color: "from-purple-500 to-purple-700" },
+        { name: "JavaScript", level: 40, icon: Terminal, color: "from-yellow-400 to-yellow-600" },
+        { name: "React.js", level: 40, icon: Terminal, color: "from-green-400 to-green-600" },
       ],
     }
   ];
 
-
+  // Personal skills
   const personalSkills = [
     { name: 'Problem Solving', level: 92, icon: Lightbulb },
     { name: 'Quick Learner', level: 92, icon: Lightbulb },
@@ -90,12 +174,14 @@ const Skills = () => {
     { name: 'Communication', level: 85, icon: MessageSquare },
   ];
 
+  // Language proficiency
   const languages = [
-    { name: 'Telugu', levelCode: 'C2', levelLabel: 'Native', flag: 'te' },
-    { name: 'English', levelCode: 'C1', levelLabel: 'Proficient', flag: 'us' },
-    { name: 'German', levelCode: 'B1', levelLabel: 'Conversational', flag: 'de' },
+    { name: 'Telugu', levelCode: 'C2', levelLabel: 'Native', level: 100, flag: 'te' },
+    { name: 'English', levelCode: 'C1', levelLabel: 'Proficient', level: 90, flag: 'us' },
+    { name: 'German', levelCode: 'B1', levelLabel: 'Conversational', level: 60, flag: 'de' },
   ];
 
+  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -106,6 +192,7 @@ const Skills = () => {
     }
   };
 
+  // Individual item animation variants
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
@@ -254,6 +341,7 @@ const Skills = () => {
                     <div className="text-2xl mr-3">{language.flag}</div>
                     <span className="text-white font-medium">{language.name}</span>
                     <span className="ml-auto text-gray-400">{language.levelLabel} ({language.levelCode})</span>
+                    <span className="ml-auto text-gray-400">{language.level}%</span>
                     {/* <span className="ml-auto text-gray-400">{language.level === 100 ? 'Native' : `${language.level}%`}</span> */}
                   </div>
                   

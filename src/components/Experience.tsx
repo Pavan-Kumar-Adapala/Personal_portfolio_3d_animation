@@ -10,46 +10,61 @@ const Experience = () => {
 
   const experiences = [
     {
-      title: 'Senior DevOps Engineer',
-      company: 'TechForward Solutions',
-      location: 'San Francisco, CA',
-      period: '2023 - Present',
+      title: 'Data Analyst',
+      company: 'Dürr Systems AG',
+      location: 'Bietigheim-Bissingen, Germany',
+      period: '02/2024 - 07/2024',
       description: [
-        'Led migration of legacy infrastructure to AWS EKS, reducing operational costs by 40%',
-        'Implemented GitOps workflows with ArgoCD, improving deployment frequency by 300%',
-        'Designed and maintained CI/CD pipelines using Jenkins and GitHub Actions',
-        'Mentored junior engineers and established DevOps best practices across teams'
+        'Thesis Topic: "Modelling concepts for forecasting the energy consumption in industrial paint shops: An in-depth analytics study"',
+        'Developed iterative and batch ML models with 95% forecasting accuracy',
+        'Improved the quality of time-series data by 35% through preprocessing and feature engineering',
+        'Evaluated models and identified key influencing features using analytics'
       ],
-      technologies: ['AWS', 'Kubernetes', 'Terraform', 'Jenkins', 'Docker', 'ArgoCD'],
-      achievements: '40% cost reduction, 300% deployment improvement'
+      technologies: ['Python', 'Exploratory Data Analysis (EDA)', 'Time series forecasting', 'Data pipelines', 'Machine Learning (ML)', 
+        'Feature engineering', 'Data-driven decision making', 'Exclude commissioning period', 'Plausibility checks'],
+      achievements: '95% forecasting accuracy, 35% time-series data quality improvement'
     },
     {
-      title: 'DevOps Engineer',
-      company: 'CloudScale Innovations',
-      location: 'Austin, TX',
-      period: '2022 - 2023',
+      title: 'Software Integrator - Research Internship',
+      company: 'Robert Bosch GmbH',
+      location: 'Stuttgart, Germany',
+      period: '05/2023 - 01/2024',
       description: [
-        'Automated infrastructure provisioning using Terraform and Ansible',
-        'Set up comprehensive monitoring and alerting with Prometheus and Grafana',
-        'Reduced deployment time from 2 hours to 15 minutes through pipeline optimization',
-        'Collaborated with development teams to implement container-first architecture'
+        'Optimized Jenkins CI/CD pipelines to enhance the autonomous parking software development process through Python automation scripts',
+        'Created a unified Grafana dashboard across projects to track system performance and support management decision-making',
+        'Co-developed a modular Python GUI for productivity KPI, improved team output by 15%',
+        'Developed an automated hardware management framework and saved 15.000 euros'
       ],
-      technologies: ['Azure', 'Docker', 'Terraform', 'Ansible', 'Prometheus', 'Grafana'],
-      achievements: '87% deployment time reduction'
+      technologies: ['Python(Tkinter, selenium, Pandas, Numpy, threading, logging)', 'Bash Scripting', 'Jenkins', 'Git & Bitbucket', 
+        'JFrog Artifactory', 'JIRA & Confluence', 'Grafana', 'PostgreSQL', 'RESTAPIs', 'WSL', 'Linux VM','ETL Pipeline', 'GUI Application',
+        'Data-driven'],
+      achievements: '30% reduction in debugging time, 15% improvement in team productivity'
     },
     {
-      title: 'Junior DevOps Engineer',
-      company: 'StartupTech Inc.',
-      location: 'Remote',
-      period: '2021 - 2022',
+      title: 'Trainee DevOps Engineer',
+      company: 'Ibexlabs Cloud Consulting Private Limited',
+      location: 'Hyderabad, India',
+      period: '04/2021 - 09/2021',
       description: [
-        'Built and maintained CI/CD pipelines for microservices architecture',
-        'Implemented infrastructure monitoring and log aggregation solutions',
-        'Participated in on-call rotation and incident response procedures',
-        'Contributed to infrastructure documentation and runbooks'
+        'Automated infrastructure provisioning using CloudFormation, Terraform, and Ansible',
+        'Set up comprehensive monitoring and alerting with CloudWatch',
+        'Resolved infrastructure issues and updated Confluence documentation'
       ],
-      technologies: ['AWS', 'Docker', 'GitLab CI', 'ELK Stack', 'Python', 'Bash'],
-      achievements: 'Foundation in DevOps practices'
+      technologies: ['AWS', 'Python', 'Bash', 'Terraform', 'Ansible', 'Git & GitHub'],
+      achievements: 'Managing and monitoring client cloud solutions'
+    },
+    {
+      title: 'Trainee Cloud Engineer',
+      company: 'Isuzu Motors India Private Limited',
+      location: 'Sri City, India',
+      period: '06/2018 - 07/2019',
+      description: [
+        'Developed a CI/CD pipeline and deployed the application on a scalable 3-tier architecture with AutoScaling and Elastic Load Balancer (ELB), reducing operational costs by 25%',
+        'Secured RDS – EC2 data flow and reduced data retrieval time by 30%',
+        'Collaborated with development and operational teams to resolve infra dependency issues'
+      ],
+      technologies: ['AWS', 'Python', 'Bash', 'Git & GitHub'],
+      achievements: 'Reduced data retrieval time by 30%, Reduced operational costs by 25%'
     }
   ];
 
