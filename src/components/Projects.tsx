@@ -18,7 +18,7 @@ const Projects = () => {
       architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation/src/img/aws_django.png',
       github: '#',
       demo: '#',
-      category: '3-Tier Architecture',
+      category: 'AWS, 3-Tier Architecture',
       detailedDescription: [
         'Designed and deployed AWS cloud infrastructure to host a Django-based vehicle quality testing application, ensuring high availability and cost efficiency',
         'Configured EC2 Auto Scaling and Load Balancer to optimize performance',
@@ -33,16 +33,16 @@ const Projects = () => {
       }
     },
     {
-      title: 'Optimization of CI/CD Processes and Monitoring Systems for Autonomous Parking Software Development',
+      title: 'Optimization of CI/CD Processes and Monitoring Systems for Autonomous Parking Software Development (ADAS)',
       description: 'Optimized Jenkins CI/CD pipelines to accelerate the software development lifecycle (SDLC) and deliver high-quality parking software by implementing Python automation scripts and enhancing the feedback mechanism.',
       image: 'https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=800',
       technologies: ['Python & Bash Scripting', 'RESTAPIs', 'Jenkins', 'JFrog Artifactory', 'Git & Bitbucket', 'JIRA', 'Grafana', 'PostgreSQL'],
       architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation/src/img/ADAS_CICD.png',
       github: '#',
       demo: '#',
-      category: 'DevOps, ADAS',
+      category: 'DevOps, CI/CD, ADAS',
       detailedDescription: [
-        'Integrated Python scripts into Nightly CTC and smoke test pipelines to extract test reports and generate summary files, resulting in a 30% reduction in debugging time',
+        'Developed and integrated Python scripts into Nightly CTC and smoke test pipelines to parse test reports from build artifacts, enhancing the software development process and reducing debugging time by 30%',
         'Collaborated on developing a CI pipeline to automate PDX container creation for flashing the Parking ECU (FPM Core), leading to enhanced security standards',
         'Developed a centralized Grafana dashboard using advanced PostgreSQL queries to monitor the development process in real time and support data-driven decision-making across parking software projects'
       ],
@@ -52,51 +52,71 @@ const Projects = () => {
       }
     },
     {
-      title: 'Infrastructure Monitoring Stack',
-      description: 'Comprehensive monitoring and observability solution with custom dashboards, alerting, and performance analytics for cloud infrastructure.',
+      title: 'Hybrid Infrastructure Monitoring Stack',
+      description: 'Comprehensive monitoring and observability solution with custom dashboards, alerting, and performance analytics for cloud and on-premises infrastructure.',
       image: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['Prometheus', 'Grafana', 'ELK Stack', 'Jaeger', 'Kubernetes', 'AWS'],
-      architecture: 'https://images.pexels.com/photos/1181472/pexels-photo-1181472.jpeg?auto=compress&cs=tinysrgb&w=800',
-      github: 'https://github.com/alexjohnson/monitoring-stack',
-      demo: 'https://monitoring.demo.com',
-      category: 'Monitoring',
+      technologies: ['Prometheus', 'Grafana', 'VMware', 'AWS', 'OpenVPN', 'Node Exporter', 'Nginx', 'Linux (RHEL 9)', 'Shell/Bash Scripting'],
+      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation/src/img/prometheus_hybrid_monitoring_architecture.gif',
+      github: 'https://github.com/Pavan-Kumar-Adapala/prometheus_hybrid_monitoring_proj',
+      demo: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation/src/img/prometheus_hybrid_monitoring_architecture.gif',
+      category: 'Monitoring and observability',
       detailedDescription: [
-        'Built comprehensive observability platform monitoring 200+ services',
-        'Designed custom Grafana dashboards with real-time performance metrics',
-        'Implemented distributed tracing with Jaeger for microservices debugging',
-        'Created intelligent alerting system reducing false positives by 70%',
-        'Established log aggregation pipeline processing 10TB+ daily',
-        'Developed automated incident response workflows'
+        'Architected and deployed a hybrid monitoring system for on-prem (VMware RHEL) and AWS EC2 infrastructure across development and production environments',
+        'Configured Prometheus to collect metrics securely through OpenVPN tunnels and Nginx reverse proxy for encrypted access to isolated nodes (in Prod Env)',
+        'Developed Grafana dashboards to visualize system performance (CPU, memory, disk, and network) across hybrid infrastructure using Node Exporter and Prometheus',
+        'Automated the monitoring pipeline end-to-end, reducing manual setup time by 30% through robust, reusable shell scripts',
+        'Enhanced infrastructure observability and security by integrating VPN-based access controls and reverse proxy routing'
       ],
       metrics: {
-        services: '200+',
-        falsePositives: '-70%',
-        logVolume: '10TB/day',
-        mttr: '15 min'
+        servers: 'AWS EC2, On-premises VM',
+        setupTimeReduced: '30%',
+        accessSecurity: '100% encrypted (VPN + proxy)'
       }
     },
     {
-      title: 'Serverless Event Processing',
-      description: 'Event-driven serverless architecture for real-time data processing with auto-scaling and cost optimization features.',
+      title: 'Secure Serverless Website Hosting',
+      description: 'Hosted a static portfolio on AWS S3 with CloudFront integration for fast, secure global delivery.',
       image: 'https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['AWS Lambda', 'API Gateway', 'DynamoDB', 'SQS', 'CloudFormation', 'Python'],
-      architecture: 'https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=800',
-      github: 'https://github.com/alexjohnson/serverless-events',
-      demo: 'https://events.demo.com',
-      category: 'Serverless',
+      technologies: ['AWS S3', 'AWS CloudFront', 'AWS IAM', 'Origin Access Identity (OAI)', 'S3 Bucket Policies', 'HTML/CSS/JavaScript', 'Terraform'],
+      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation/src/img/AWS_serverless_static_website.png',
+      github: 'https://github.com/Pavan-Kumar-Adapala/Portfolio_project_Adapala',
+      demo: '#',
+      category: 'AWS, Serverless',
       detailedDescription: [
-        'Architected serverless event processing system handling 1M+ events daily',
-        'Implemented auto-scaling Lambda functions with optimized memory allocation',
-        'Built event-driven architecture with SQS, SNS, and EventBridge integration',
-        'Designed cost-optimized data storage with DynamoDB and S3 lifecycle policies',
-        'Created real-time analytics dashboard with CloudWatch and custom metrics',
-        'Achieved 60% cost reduction compared to traditional server-based solution'
+        'Hosted a personal portfolio site on AWS S3 and accelerated delivery with CloudFront CDN',
+        'Applied secure access controls using Origin Access Identity (OAI) and tailored S3 bucket policies, resulting in faster load times and improved security'
       ],
       metrics: {
-        events: '1M+/day',
-        costSaving: '60%',
-        latency: '<100ms',
-        availability: '99.95%'
+        loadTimeImprovement: '50%',
+        hostingCost: '<$1/month',
+        uptime: '100%',
+        latency: '<80ms (via CloudFront)',
+        publicAccessRisk: '0% (OAI enforced)',
+        maintenance: '0 server ops required'
+      }
+    },
+    {
+      title: 'End-to-End CI/CD for Portfolio Website',
+      description: 'Hosted a static portfolio on AWS S3 with CloudFront integration for fast, secure global delivery.',
+      image: 'https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=800',
+      technologies: ['GitHub Actions', 'GitHub Pages', 'Docker', 'Git Flow', 'HTML, CSS, JavaScript', 'Origin Access Identity (OAI)', 'S3 Bucket Policies', 'HTML/CSS/JavaScript', 'Terraform'],
+      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation/src/img/AWS_serverless_static_website.png',
+      github: 'https://github.com/Pavan-Kumar-Adapala/Portfolio_project_Adapala',
+      demo: '#',
+      category: 'Docker, CI/CD',
+      detailedDescription: [
+        '🔄 CI/CD Automation: 100% automated deployments for both static and Dockerized versions',
+        '🐳 Containerization: Docker image build and push to DockerHub on every merge to main',
+        '🌿 Branching Strategy: Feature, release, hotfix, and dev branches managed through structured Git flow',
+        '✅ Code Quality: All changes reviewed and merged via PRs with enforced approvals'
+      ],
+      metrics: {
+        deploymentAutomation: '100%',
+        containerBuilds: 'On every push to main',
+        codeReviewCoverage: '100% of PRs',
+        manualDeployments: '0',
+        releaseReadiness: 'Every merge to main',
+        imageTagging: 'Latest (versioning ready)'
       }
     }
   ];
