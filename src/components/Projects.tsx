@@ -97,10 +97,10 @@ const Projects = () => {
     },
     {
       title: 'End-to-End CI/CD for Portfolio Website',
-      description: 'Hosted a static portfolio on AWS S3 with CloudFront integration for fast, secure global delivery.',
+      description: 'Implemented a fully automated CI/CD pipeline using GitHub Actions for deploying a personal portfolio. The project supports both static hosting (via GitHub Pages) and containerized deployment (via DockerHub), backed by a robust Git branching and pull request workflow.',
       image: 'https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=800',
       technologies: ['GitHub Actions', 'GitHub Pages', 'Docker', 'Git Flow', 'HTML, CSS, JavaScript', 'Origin Access Identity (OAI)', 'S3 Bucket Policies', 'HTML/CSS/JavaScript', 'Terraform'],
-      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation/src/img/AWS_serverless_static_website.png',
+      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation/src/img/src/img/docker_image_CD.png',
       github: 'https://github.com/Pavan-Kumar-Adapala/Portfolio_project_Adapala',
       demo: '#',
       category: 'Docker, CI/CD',
@@ -118,7 +118,70 @@ const Projects = () => {
         releaseReadiness: 'Every merge to main',
         imageTagging: 'Latest (versioning ready)'
       }
+    },
+    {
+      title: 'Linux Administration & Automation with Bash Scripts',
+      description: 'Developed a suite of Bash scripts to automate Linux system administration tasks such as monitoring, security auditing, user management, log rotation, and Git operations. Designed for scalability and cron-based scheduling to reduce manual overhead in server environments.',
+      image: 'https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=800',
+      technologies: ['Bash Scripting', 'Linux'],
+      architecture: '#',
+      github: 'https://github.com/Pavan-Kumar-Adapala/bash_scripts_for_automation',
+      demo: '#',
+      category: 'Linux Administration',
+      detailedDescription: [
+        'System Monitoring: Alerts on high CPU/memory usage, process/port checks',
+        'Security Auditing: User privilege checks, vulnerability scans',
+        'User Management: Bulk user creation/deletion with home directory cleanup',
+        'Log & Storage Management: Log rotation, large file detection, file comparison',
+      ],
+      metrics: {
+        scriptsCreated: '15+',
+        manualTasksReduced: '70%'
+      }
+    },
+    {
+      title: 'Automated Hardware Management Framework',
+      description: 'Designed and implemented an automated hardware tracking and management framework by integrating Python scripts with JIRA and Confluence APIs. Improved asset visibility, reduced manual effort, and saved costs at the department level.',
+      image: 'https://images.pexels.com/photos/256381/pexels-photo-256381.jpeg?auto=compress&cs=tinysrgb&w=800',
+      technologies: ['Python', 'JIRA REST API', 'Confluence API', 'Seventhings'],
+      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation/src/img/src/img/src/img/hardware_management.png',
+      github: '#',  // optional: can be private or internal-only
+      demo: '#',
+      category: 'Automation',
+      detailedDescription: [
+        'Analysed the existing hardware management workflow and optimized JIRA ticket structuring and QR code generation for better tracking',
+        'Developed Python automation scripts integrating JIRA REST API and Confluence REST API to automate hardware tracking and management',
+        'Implemented a scalable solution at the department level, enabling micro-level asset tracking across storage areas and test benches',
+        'Extracted and centralized asset data using Python scripts in Seventhings application, improving interdepartmental visibility and efficiency',
+        'Achieved €15,000 cost savings by reducing manual efforts and enhancing tracking accuracy'
+      ],
+      metrics: {
+        costSaving: '€15,000',
+        manualEffortReduction: '80%',
+        assetTrackingCoverage: '100% (department-wide)'
+      }
+    },
+    {
+    title: 'Focus Time KPI – Standalone GUI Application',
+    description: 'Built a Python-based GUI tool to automate and visualize department-level Focus Time KPIs by integrating web-scraped login data with Outlook schedules. Enabled seamless ETL processing, real-time feedback, and report generation.',
+    image: 'https://images.pexels.com/photos/97080/pexels-photo-97080.jpeg?auto=compress&cs=tinysrgb&w=800',
+    technologies: ['Python (tkinter (GUI), Selenium (Web Automation), Pandas & NumPy (Data Processing), matplotlib (Data Visualization), threading (Multithreading))', 'ETL', 'Modular Programming', 'Linux'],
+    architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation/src/img/src/img/src/img/src/img/FoucsTime_animation.gif',
+    github: '#',  // private or internal repo, can be omitted
+    demo: '#',
+    category: 'KPI Automation / Internal Tools',
+    detailedDescription: [
+      'Developed a GUI using Python Tkinter to track and visualize department Focus Time KPIs',
+      'Automated secure PDF downloads from a web portal using Selenium, overcoming the absence of an API for data extraction',
+      'Implemented ETL pipeline: extracted login info from PDFs, merged with Outlook data, stored results on Linux server',
+      'Used modular scripting for extraction, transformation, KPI logic, and chart generation',
+      'Added multithreading for backend tasks to maintain GUI responsiveness'
+    ],
+    metrics: {
+      TeamImprovement: '15%',
+      KPIVisibilityImproved: '100%'
     }
+  }
   ];
 
   const containerVariants = {
@@ -361,5 +424,7 @@ const Projects = () => {
     </section>
   );
 };
+
+
 
 export default Projects;
