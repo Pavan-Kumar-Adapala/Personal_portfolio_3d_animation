@@ -11,6 +11,7 @@ import {
   Github,
   Twitter,
 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const ref = useRef(null);
@@ -41,12 +42,25 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+    };
+
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const result = await emailjs.send(
+        'service_up4y1du',         // ← your real service ID
+        'template_speycjg',        // ← your real template ID
+        templateParams,
+        'jWwO2G1-0P13QKMew'         // ← your real public key
+      );
+      console.log(result.text);
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
+      console.error(error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
