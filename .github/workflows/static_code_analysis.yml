@@ -5,9 +5,9 @@ on:
     branches:
       - development
       - Prod
-  push:
-    branches:
-      - development
+  # push:
+  #   branches:
+  #     - development
   workflow_dispatch: null # manual trigger
 
 jobs:
@@ -87,4 +87,5 @@ jobs:
         uses: actions/upload-artifact@v4 
         with:
           name: codeql-results
+          path: codeql-results.sarif
         
