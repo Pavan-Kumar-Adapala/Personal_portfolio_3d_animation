@@ -30,10 +30,11 @@ const Experience = () => {
       location: 'Stuttgart, Germany',
       period: '05/2023 - 01/2024',
       description: [
-        'Optimized Jenkins CI/CD pipelines to enhance the autonomous parking software development process through Python automation scripts',
-        'Created a unified Grafana dashboard across projects to track system performance and support management decision-making',
-        'Co-developed a modular Python GUI for productivity KPI, improved team output by 15%',
-        'Developed an automated hardware management framework and saved 15.000 euros'
+        'Designed and optimized Jenkins pipelines to streamline CI/CD workflows for advanced driver-assistance (ADAS) parking system software',
+        'Automated debugging tasks by integrating Python scripts with REST APIs, reducing issue resolution time by 30%',
+        'Built a centralized Grafana dashboard for monitoring CI/CD builds across multiple projects, enabling data-driven release planning and performance insights',
+        'Co-developed a modular Python GUI for productivity KPI, improving team output by 15%',
+        'Developed an automated hardware management framework for assets management, saving 15.000 euros'
       ],
       technologies: ['Python(Tkinter, selenium, Pandas, Numpy, threading, logging)', 'Bash Scripting', 'Jenkins', 'Git & Bitbucket', 
         'JFrog Artifactory', 'JIRA & Confluence', 'Grafana', 'PostgreSQL', 'RESTAPIs', 'WSL', 'Linux VM','ETL Pipeline', 'GUI Application',
@@ -46,9 +47,8 @@ const Experience = () => {
       location: 'Hyderabad, India',
       period: '04/2021 - 09/2021',
       description: [
-        'Automated infrastructure provisioning using CloudFormation, Terraform, and Ansible',
-        'Set up comprehensive monitoring and alerting with CloudWatch',
-        'Resolved infrastructure issues and updated Confluence documentation'
+        'Provisioned and managed AWS infrastructure using Terraform and CloudFormation, ensuring consistency and scalability',
+        'Developed custom CloudWatch dashboards and alerting systems to monitor application performance metrics and logs, enabling proactive incident response and minimizing downtime'
       ],
       technologies: ['AWS', 'Python', 'Bash', 'Terraform', 'Ansible', 'Git & GitHub'],
       achievements: 'Managing and monitoring client cloud solutions'
@@ -59,9 +59,9 @@ const Experience = () => {
       location: 'Sri City, India',
       period: '06/2018 - 07/2019',
       description: [
-        'Developed a CI/CD pipeline and deployed the application on a scalable 3-tier architecture with AutoScaling and Elastic Load Balancer (ELB), reducing operational costs by 25%',
-        'Secured RDS – EC2 data flow and reduced data retrieval time by 30%',
-        'Collaborated with development and operational teams to resolve infra dependency issues'
+        'Contribute to cloud migration proof-of-concept project, reducing infrastructure costs by 25% using AWS Auto Scaling',
+        'Implemented CI/CD pipelines using Jenkins Master-Slave architecture to automate deployments on AWS, accelerating release cycles',
+        'Designed and deployed a scalable 3-tier AWS architecture to host a web application, ensuring high availability and fault tolerance'
       ],
       technologies: ['AWS', 'Python', 'Bash', 'Git & GitHub'],
       achievements: 'Reduced data retrieval time by 30%, Reduced operational costs by 25%'
