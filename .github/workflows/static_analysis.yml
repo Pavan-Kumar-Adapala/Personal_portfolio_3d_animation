@@ -5,8 +5,7 @@ name: Static Code Quality
     branches:
       - development
       - Prod
-  workflow_dispatch: null
-    # Allows manual triggering of the workflow
+  workflow_dispatch: null # Allows manual triggering of the workflow
 
 jobs:
   linting:
