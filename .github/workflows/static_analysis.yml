@@ -28,7 +28,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22.1.0
+          node-version: 22.16.0
           cache: npm
 
       - name: Install dependencies
@@ -50,7 +50,6 @@ jobs:
   static_analysis:
     name: Run Static Code Analysis (CodeQL)
     runs-on: ubuntu-latest
-    # This job runs only for merge requests, ensuring that static analysis is performed
     # when code is merged into the main branch.
     if: github.event_name == 'pull_request' && github.base_ref == 'Prod'
     needs: linting # Ensure linting job is completed before running static analysis

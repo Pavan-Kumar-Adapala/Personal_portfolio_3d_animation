@@ -15,7 +15,8 @@ const Projects = () => {
       description: 'Deployed the web application on a scalable 3-tier architecture, implementing Auto Scaling and an Elastic Load Balancer (ELB) to ensure a secure and scalable AWS infrastructure.',
       image: 'https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=800',
       technologies: ['AWS (CodePipeline, EC2, VPC, IAM, Route 53, Elastic Load Balancer, AutoScaling, RDS, S3, SES, CloudWatch)', 'Git', 'GitHub', 'Linux (Ubuntu)', 'Python & Bash scripting', 'Nginx Web Server'],
-      architecture: 'https://drive.google.com/drive/u/2/folders/1n03KiXN-oJxksWhzPJujXU0eCkgN3XQN/aws_django.png',
+      // architecture: '/images/aws_django.png',
+      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/aws_django.png?raw=true',
       github: '#',
       demo: '#',
       category: 'AWS, 3-Tier Architecture',
@@ -33,39 +34,17 @@ const Projects = () => {
       }
     },
     {
-      title: 'Optimization of CI/CD Processes and Monitoring Systems for Autonomous Parking Software Development (ADAS)',
-      description: 'Optimized Jenkins CI/CD pipelines to accelerate the software development lifecycle (SDLC) and deliver high-quality parking software by implementing Python automation scripts and enhancing the feedback mechanism.',
-      image: 'https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['Python & Bash Scripting', 'RESTAPIs', 'Jenkins', 'JFrog Artifactory', 'Git & Bitbucket', 'JIRA', 'Grafana', 'PostgreSQL'],
-      architecture: 'https://drive.google.com/drive/u/2/folders/1n03KiXN-oJxksWhzPJujXU0eCkgN3XQN/ADAS_CICD.png',
-      github: '#',
-      demo: '#',
-      category: 'DevOps, CI/CD, ADAS',
-      detailedDescription: [
-        'Developed and integrated Python scripts into Nightly CTC and smoke test pipelines to parse test reports from build artifacts, enhancing the software development process and reducing debugging time by 30%',
-        'Collaborated on developing a CI pipeline to automate PDX container creation for flashing the Parking ECU (FPM Core), leading to enhanced security standards',
-        'Developed a centralized Grafana dashboard using advanced PostgreSQL queries to monitor the development process in real time and support data-driven decision-making across parking software projects'
-      ],
-      metrics: {
-        Reduceddebuggingtime: '30%',
-        Qualitystandard: 'ISO 9001',
-      }
-    },
-    {
       title: 'Hybrid Infrastructure Monitoring Stack',
       description: 'Comprehensive monitoring and observability solution with custom dashboards, alerting, and performance analytics for cloud and on-premises infrastructure.',
       image: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800',
       technologies: ['Prometheus', 'Grafana', 'VMware', 'AWS', 'OpenVPN', 'Node Exporter', 'Nginx', 'Linux (RHEL 9)', 'Shell/Bash Scripting'],
-      architecture: 'https://drive.google.com/drive/u/2/folders/1n03KiXN-oJxksWhzPJujXU0eCkgN3XQN/prometheus_hybrid_monitoring_architecture.gif',
+      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/prometheus_hybrid_monitoring_architecture.gif?raw=true',
       github: 'https://github.com/Pavan-Kumar-Adapala/prometheus_hybrid_monitoring_proj',
-      demo: 'https://drive.google.com/drive/u/2/folders/1n03KiXN-oJxksWhzPJujXU0eCkgN3XQN/prometheus_hybrid_monitoring_architecture.gif',
+      demo: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/prometheus_hybrid_monitoring_architecture.gif?raw=true',
       category: 'Monitoring and observability',
       detailedDescription: [
-        'Architected and deployed a hybrid monitoring system for on-prem (VMware RHEL) and AWS EC2 infrastructure across development and production environments',
-        'Configured Prometheus to collect metrics securely through OpenVPN tunnels and Nginx reverse proxy for encrypted access to isolated nodes (in Prod Env)',
-        'Developed Grafana dashboards to visualize system performance (CPU, memory, disk, and network) across hybrid infrastructure using Node Exporter and Prometheus',
-        'Automated the monitoring pipeline end-to-end, reducing manual setup time by 30% through robust, reusable shell scripts',
-        'Enhanced infrastructure observability and security by integrating VPN-based access controls and reverse proxy routing'
+        'Designed a secure monitoring stack using Prometheus, Grafana, and Node Exporter to collect metrics from AWS EC2 and on-prem RHEL nodes via OpenVPN and Nginx reverse proxy, mirroring real-world hybrid infrastructure and improving observability across environments',
+        'Automated secure metric collection across AWS EC2 and on-prem RHEL nodes by integrating OpenVPN tunneling and Nginx reverse proxy into a centralized Prometheus-Grafana stack, enabling real-time observability and enforcing restricted access through fine-grained firewall rules'
       ],
       metrics: {
         servers: 'AWS EC2, On-premises VM',
@@ -78,13 +57,13 @@ const Projects = () => {
       description: 'Hosted a static portfolio on AWS S3 with CloudFront integration for fast, secure global delivery.',
       image: 'https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=800',
       technologies: ['AWS S3', 'AWS CloudFront', 'AWS IAM', 'Origin Access Identity (OAI)', 'S3 Bucket Policies', 'HTML/CSS/JavaScript', 'Terraform'],
-      architecture: 'https://drive.google.com/drive/u/2/folders/1n03KiXN-oJxksWhzPJujXU0eCkgN3XQN/AWS_serverless_static_website.png',
+      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/AWS_serverless_static_website.png?raw=true',
       github: 'https://github.com/Pavan-Kumar-Adapala/Portfolio_project_Adapala',
       demo: '#',
       category: 'AWS, Serverless',
       detailedDescription: [
-        'Hosted a personal portfolio site on AWS S3 and accelerated delivery with CloudFront CDN',
-        'Applied secure access controls using Origin Access Identity (OAI) and tailored S3 bucket policies, resulting in faster load times and improved security'
+        'Improved content delivery speed and reliability by hosting the portfolio website on AWS S3 with CloudFront CDN using a secure serverless architecture',
+        'Configured Origin Access Identity (OAI) and S3 bucket policies to enforce secure, restricted access'
       ],
       metrics: {
         loadTimeImprovement: '50%',
@@ -96,11 +75,30 @@ const Projects = () => {
       }
     },
     {
+      title: 'Optimization of CI/CD Processes and Monitoring Systems for Autonomous Parking Software Development (ADAS)',
+      description: 'Streamlined testing and monitoring for ADAS software to enhance delivery reliability and reduced debugging time by 30%.',
+      image: 'https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=800',
+      technologies: ['Python & Bash Scripting', 'RESTAPIs', 'Jenkins', 'JFrog Artifactory', 'Git & Bitbucket', 'JIRA', 'Grafana', 'PostgreSQL'],
+      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/ADAS_CICD.png?raw=true',
+      github: '#',
+      demo: '#',
+      category: 'DevOps, CI/CD, ADAS',
+      detailedDescription: [
+        'Automated nightly CTC and smoke test pipelines by integrating Python scripts to extract test reports and generate visual summaries from artifacts, reducing debugging time by 30%',
+        'Co-developed a Jenkins pipeline for PDX container creation and flashing the Parking ECU (FPM Core), reducing manual effort and enhancing traceability in line with ISO 27001:2022 automotive data integrity standards',
+        'Developed a centralized Grafana dashboard using advanced PostgreSQL queries to monitor the development process in real time and support data-driven decision-making across parking software projects'
+      ],
+      metrics: {
+        Reduceddebuggingtime: '30%',
+        Qualitystandard: 'ISO 27001:2022',
+      }
+    },
+    {
       title: 'End-to-End CI/CD for Portfolio Website',
-      description: 'Implemented a fully automated CI/CD pipeline using GitHub Actions for deploying a personal portfolio. The project supports both static hosting (via GitHub Pages) and containerized deployment (via DockerHub), backed by a robust Git branching and pull request workflow.',
+      description: 'Built a fully automated, serverless CI/CD pipeline to deploy and scale a personal portfolio site.',
       image: 'https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=800',
       technologies: ['GitHub Actions', 'GitHub Pages', 'Docker', 'Git Flow', 'HTML, CSS, JavaScript', 'Origin Access Identity (OAI)', 'S3 Bucket Policies', 'HTML/CSS/JavaScript', 'Terraform'],
-      architecture: 'https://drive.google.com/drive/u/2/folders/1n03KiXN-oJxksWhzPJujXU0eCkgN3XQN/docker_image_CD.png',
+      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/docker_image_CD.png?raw=true',
       github: 'https://github.com/Pavan-Kumar-Adapala/Portfolio_project_Adapala',
       demo: '#',
       category: 'Docker, CI/CD',
@@ -120,10 +118,10 @@ const Projects = () => {
       }
     },
     {
-      title: 'Linux Administration & Automation with Bash Scripts',
+      title: 'Linux System Monitoring and Automation with Bash Scripting',
       description: 'Developed a suite of Bash scripts to automate Linux system administration tasks such as monitoring, security auditing, user management, log rotation, and Git operations. Designed for scalability and cron-based scheduling to reduce manual overhead in server environments.',
       image: 'https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['Bash Scripting', 'Linux'],
+      technologies: ['Bash', 'Linux (Ubuntu, RedHat)', 'cron', 'logrotate', 'system monitoring tools'],
       architecture: '#',
       github: 'https://github.com/Pavan-Kumar-Adapala/bash_scripts_for_automation',
       demo: '#',
@@ -140,11 +138,11 @@ const Projects = () => {
       }
     },
     {
-      title: 'Automated Hardware Management Framework',
-      description: 'Designed and implemented an automated hardware tracking and management framework by integrating Python scripts with JIRA and Confluence APIs. Improved asset visibility, reduced manual effort, and saved costs at the department level.',
+      title: 'Developed Hardware Management Automation Framework',
+      description: 'Improved traceability and resource management in Bosch EPS2 Department using automation.',
       image: 'https://images.pexels.com/photos/256381/pexels-photo-256381.jpeg?auto=compress&cs=tinysrgb&w=800',
       technologies: ['Python', 'JIRA REST API', 'Confluence API', 'Seventhings'],
-      architecture: 'https://drive.google.com/drive/u/2/folders/1n03KiXN-oJxksWhzPJujXU0eCkgN3XQN/hardware_management.png',
+      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/hardware_management.png?raw=true',
       github: '#',  // optional: can be private or internal-only
       demo: '#',
       category: 'Automation',
@@ -162,20 +160,17 @@ const Projects = () => {
       }
     },
     {
-    title: 'Focus Time KPI – Standalone GUI Application',
-    description: 'Built a Python-based GUI tool to automate and visualize department-level Focus Time KPIs by integrating web-scraped login data with Outlook schedules. Enabled seamless ETL processing, real-time feedback, and report generation.',
+    title: 'Python-Based ETL and KPI Dashboard for Team Performance Analysis',
+    description: 'Built a data-driven decision tool to track and improve Bosch EPS2 team performance.',
     image: 'https://images.pexels.com/photos/97080/pexels-photo-97080.jpeg?auto=compress&cs=tinysrgb&w=800',
     technologies: ['Python (tkinter (GUI), Selenium (Web Automation), Pandas & NumPy (Data Processing), matplotlib (Data Visualization), threading (Multithreading))', 'ETL', 'Modular Programming', 'Linux'],
-    architecture: 'https://drive.google.com/drive/u/2/folders/1n03KiXN-oJxksWhzPJujXU0eCkgN3XQN/FoucsTime_animation.gif',
+    architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/FoucsTime_animation.gif?raw=true',
     github: '#',  // private or internal repo, can be omitted
-    demo: '#',
-    category: 'KPI Automation / Internal Tools',
+    demo: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/FoucsTime_animation.gif?raw=true',
+    category: 'KPI, ETL Pipeline, Automation',
     detailedDescription: [
-      'Developed a GUI using Python Tkinter to track and visualize department Focus Time KPIs',
-      'Automated secure PDF downloads from a web portal using Selenium, overcoming the absence of an API for data extraction',
-      'Implemented ETL pipeline: extracted login info from PDFs, merged with Outlook data, stored results on Linux server',
-      'Used modular scripting for extraction, transformation, KPI logic, and chart generation',
-      'Added multithreading for backend tasks to maintain GUI responsiveness'
+      'Developed a modular Python GUI with multithreading to automate secure PDF extraction (Selenium), build an ETL pipeline integrating login and Outlook data, and compute Focus Time KPIs', 
+      'Enabled data-driven team insights, improving productivity by 15%',
     ],
     metrics: {
       TeamImprovement: '15%',
@@ -351,7 +346,7 @@ const Projects = () => {
                       <img
                         src={projects[selectedProject].architecture}
                         alt={`${projects[selectedProject].title} Architecture`}
-                        className="w-full h-64 object-cover"
+                        className="max-w-full h-auto rounded-lg"
                       />
                     </div>
                   </div>
