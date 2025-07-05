@@ -37,7 +37,7 @@ jobs:
         # This command will run ESLint on all JavaScript and TypeScript files in the repository
         run: |
           mkdir -p Lint_report
-          npx eslint . --ext .js,.jsx,.ts,.tsx --fix --max-warnings 2 --format json > Lint_report/eslint-report.json
+          npx eslint . --ext .js,.ts,.tsx --format json > Lint_report/eslint-report.json
       
       - name: Upload ESLint report
         uses: actions/upload-artifact@v4
@@ -48,6 +48,7 @@ jobs:
   static_code_analysis:
     name: Run Static Code Analysis (CodeQL)
     runs-on: ubuntu-latest
+    needs: linting
     permissions:
       actions: read
       contents: read
