@@ -9,7 +9,6 @@ import {
   Send,
   Linkedin,
   Github,
-  Twitter,
 } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
@@ -105,12 +104,6 @@ const Contact = () => {
       label: 'GitHub',
       color: 'hover:text-gray-400',
     },
-    // {
-    //   icon: Twitter,
-    //   href: 'https://twitter.com/alexjohnson',
-    //   label: 'Twitter',
-    //   color: 'hover:text-blue-400'
-    // }
   ];
 
   return (

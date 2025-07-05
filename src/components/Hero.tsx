@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, Cloud, Server, GitBranch } from 'lucide-react';
 
+const texts = ['Cloud Engineer', 'DevOps Engineer', 'Site Reliability Engineer'];
+
 const Hero = () => {
   const [currentText, setCurrentText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-
-  const texts = ['Cloud Infrastructure', 'CI/CD', 'Automation'];
 
   useEffect(() => {
     const timeout = setTimeout(
@@ -31,7 +31,7 @@ const Hero = () => {
     );
 
     return () => clearTimeout(timeout);
-  }, [currentText, currentIndex, isDeleting, texts]);
+  }, [currentText, currentIndex, isDeleting]);
 
   const floatingIcons = [
     { Icon: Cloud, delay: 0, x: 100, y: 50 },
@@ -131,8 +131,8 @@ const Hero = () => {
             transition={{ duration: 1, delay: 0.6 }}
             className="text-gray-400 mb-12"
           >
-            Passionate about building scalable, resilient cloud infrastructure
-            and streamlining deployment pipelines. 2+ years of experience in
+            Passionate about building scalable, resilient cloud or hybrid infrastructure
+            and streamlining deployment pipelines. almost 3 years of experience in
             AWS, Containerization technologies, and modern DevOps practices.
           </motion.div>
 
