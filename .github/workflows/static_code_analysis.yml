@@ -51,7 +51,7 @@ jobs:
     permissions:
       actions: read
       contents: read
-      secuirity-events: write 
+      security-events: write 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
