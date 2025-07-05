@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react'; // React,
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
@@ -6,7 +6,7 @@ import { ExternalLink, Github, Play, X, Eye } from 'lucide-react';
 
 const Projects = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.1 });
+  const isInView = useInView(ref, { once: true }); // threshold: 0.1
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
   const projects = [
