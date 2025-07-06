@@ -47,7 +47,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dist # Name of the artifact
-          path: dist # Path to the build output directory
+          path: dist/* # Path to the build output directory
 
   deploy:
     name: Deploy to GitHub Pages
@@ -62,11 +62,15 @@ jobs:
         with:
           name: dist # Name of the artifact to download
           path: ./ # downloads to ./Personal_portfolio_3d_animation
-      
+
+      - name: List after download
+        run: |
+          ls -l
+          ls -l Personal_portfolio_3d_animation || echo "Folder does not exist"
+        
       - name: Rename dist directory
         run: |
-          mv Personal_portfolio_3d_animation dist
-          
+          mv Personal_portfolio_3d_animation/* dist
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
