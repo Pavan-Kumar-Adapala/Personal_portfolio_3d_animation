@@ -79,13 +79,13 @@ jobs:
         uses: github/codeql-action/analyze@v3
         with:
           output: 'codeql-results.sarif'
-          upload: true
+          upload: true # This will upload the results to GitHub Security tab
           # If you want to specify a custom output directory, you can do so here
           # output-directory: 'path/to/output'
 
-      - name: Upload CodeQL results
-        uses: actions/upload-artifact@v4 
-        with:
-          name: codeql-results
-          path: codeql-results.sarif
+      # - name: Upload CodeQL results
+      #   uses: actions/upload-artifact@v4 
+      #   with:
+      #     name: codeql-results
+      #     path: codeql-results.sarif
         
