@@ -61,18 +61,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dist # Name of the artifact to download
-          path: ./
+          path: ./ # downloads to ./Personal_portfolio_3d_animation
       
-      - name: Create dist directory and move files
+      - name: Rename dist directory
         run: |
-          mkdir dist
-          # Move all files and folders except the dist folder itself into dist/
-          # This moves index.html, assets/, images/, files/, etc.
-          shopt -s extglob  # Enable extended pattern matching in bash
-          mv !(dist) dist/
+          mv Personal_portfolio_3d_animation dist
           
-      # - name: List files after moving to dist
-      #   run: ls -alh dist
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
