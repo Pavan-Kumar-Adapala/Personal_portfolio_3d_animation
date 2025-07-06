@@ -14,7 +14,7 @@ RUN npm install
 # Copy the rest of the application source code to the working directory
 COPY . .
 # Build the application using Vite
-RUN npm run build
+RUN npm run build -- --base=/
 
 # Use the official Nginx image as the base image for the production stage
 FROM nginx:alpine
