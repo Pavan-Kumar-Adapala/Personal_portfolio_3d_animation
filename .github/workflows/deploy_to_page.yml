@@ -69,6 +69,7 @@ jobs:
         
       - name: Rename dist directory
         run: |
+          mkdir -p dist
           mv ./* dist
 
       - name: Deploy to GitHub Pages
