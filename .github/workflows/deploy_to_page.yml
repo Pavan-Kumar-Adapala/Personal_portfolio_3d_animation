@@ -61,8 +61,18 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dist # Name of the artifact to download
-          path: ./dist  # Extract artifact directly here
-
+          path: ./
+      
+      - name: List files after downloading artifact
+        run: |
+          echo "Current working directory:"
+          pwd
+          echo
+          echo "Contents of current directory:"
+          ls -alh
+          echo
+          echo "Recursive listing:"
+          find . -type f
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
