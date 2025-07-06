@@ -73,7 +73,10 @@ jobs:
           pwd
           mkdir -p dist
           ls -l
-          mv ./* ./dist
+          cd dist
+          ls -l
+          shopt -s extglob   # enable extended globbing in bash
+          mv !(dist) dist/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
