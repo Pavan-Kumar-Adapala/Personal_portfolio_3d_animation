@@ -38,9 +38,9 @@ const About = () => {
                   transition={{ duration: 0.8, delay: 0.4 }}
                   className="text-gray-300 text-lg leading-relaxed"
                 >
-                  Hi, I'm Pavan Kumar, a passionate DevOps Engineer with around 3
-                  years of experience in cloud infrastructure, automation, and
-                  continuous integration/deployment.
+                  Hi, I'm Pavan Kumar Adapala, a passionate DevOps Engineer with around 3 years of experience AWS cloud, 
+                  automating the software development lifecycle with CI/CD and open-source tools, and implementing observability 
+                  solutions.
                 </motion.p>
 
                 <motion.p
