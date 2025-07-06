@@ -71,8 +71,8 @@ jobs:
           shopt -s extglob  # Enable extended pattern matching in bash
           mv !(dist) dist/
           
-      - name: List files after moving to dist
-        run: ls -alh dist
+      # - name: List files after moving to dist
+      #   run: ls -alh dist
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
