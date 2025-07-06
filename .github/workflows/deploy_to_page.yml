@@ -1,0 +1,66 @@
+# Deploy the vite + react + typescript project to GitHub Pages
+# This workflow builds the project and deploys it to GitHub Pages
+name: Deploy to GitHub Pages
+# This workflow is triggered by the completion of the static code analysis pipeline
+on:
+  workflow_run:
+    workflows: ["static_code_analysis_pipeline"]
+    types:
+      - completed
+permissions:
+  contents: read        # Needed to check out code
+  pages: write          # Needed to deploy to GitHub Pages
+  id-token: write       # Optional: useful if you use OIDC tokens (can be removed if unused)
+
+jobs:
+  # static code analysis is done in the static_code_analysis_pipeline
+  # this job will only run if the static code analysis pipeline is successful
+  # and the branch is Prod
+  # it will build the project and deploy it to GitHub Pages
+  build:
+    name: Build the project
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'Prod' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x # Specify the Node.js version
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci # Use npm ci for faster installs
+
+      - name: Build the project
+        run: npm run build
+
+      - name: upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: GitHub Pages
+
+    steps:
+      # - name: Checkout code
+      #   uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist
