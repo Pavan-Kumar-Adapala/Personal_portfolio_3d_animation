@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/Personal_portfolio_3d_animation/',   // 👈 ADD THIS LINE
+  base: '/Personal_portfolio_3d_animation/',   // Base path for the project
   plugins: [react()],
   optimizeDeps: {
     exclude: ['lucide-react'],
