@@ -57,19 +57,12 @@ jobs:
       name: GitHub Pages
 
     steps:
-      # - name: Checkout code
-      #   uses: actions/checkout@v4
-
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
           name: dist # Name of the artifact to download
           path: ./dist  # Extract artifact directly here
 
-      - name: List files after downloading artifact
-        run: |
-          pwd
-          ls -lr
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
