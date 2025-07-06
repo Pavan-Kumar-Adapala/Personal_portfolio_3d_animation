@@ -71,12 +71,11 @@ jobs:
       - name: Rename dist directory
         run: |
           pwd
+          ls -l
           mkdir -p dist
-          ls -l
-          cd dist
-          ls -l
           shopt -s extglob   # enable extended globbing in bash
           mv !(dist) dist/
+          ls -l dist
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
