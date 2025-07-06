@@ -1,2 +1,0 @@
-# The first build and deploys the application in github pages.
-# The pipeline is used to deploy the Docker image to a container registry.
