@@ -62,20 +62,13 @@ jobs:
         with:
           name: dist # Name of the artifact to download
           path: ./ # downloads to ./Personal_portfolio_3d_animation
-
-      - name: List after download
-        run: |
-          ls -l
-          pwd
         
       - name: Rename dist directory
         run: |
-          pwd
-          ls -l
           mkdir -p dist
           shopt -s extglob   # enable extended globbing in bash
           mv !(dist) dist/
-          ls -l dist
+          ls -la ./dist
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
