@@ -63,16 +63,16 @@ jobs:
           name: dist # Name of the artifact to download
           path: ./
       
-      - name: List files after downloading artifact
+      - name: Create dist directory and move files
         run: |
-          echo "Current working directory:"
-          pwd
-          echo
-          echo "Contents of current directory:"
-          ls -alh
-          echo
-          echo "Recursive listing:"
-          find . -type f
+          mkdir dist
+          # Move all files and folders except the dist folder itself into dist/
+          # This moves index.html, assets/, images/, files/, etc.
+          shopt -s extglob  # Enable extended pattern matching in bash
+          mv !(dist) dist/
+          
+      - name: List files after moving to dist
+        run: ls -alh dist
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
