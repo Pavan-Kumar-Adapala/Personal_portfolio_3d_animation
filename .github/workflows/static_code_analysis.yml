@@ -6,7 +6,7 @@ on:
       - development
   push:
     branches:
-      - Prod
+      - '**' # ANY branch push
   workflow_dispatch: null # manual trigger
 
 jobs:
