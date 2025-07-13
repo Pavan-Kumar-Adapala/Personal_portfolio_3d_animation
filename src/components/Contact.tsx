@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import {
   Mail,
@@ -150,9 +149,7 @@ const Contact = () => {
                     whileHover={{ scale: 1.02, x: 10 }}
                     className="flex items-center p-4 bg-gray-800/50 backdrop-blur-sm rounded-lg hover:bg-gray-700/50 transition-all group"
                   >
-                    <div
-                      className={`p-3 rounded-lg bg-gradient-to-r ${item.color} mr-4 group-hover:scale-110 transition-transform`}
-                    >
+                    <div className={`p-3 rounded-lg bg-gradient-to-r ${item.color} mr-4 group-hover:scale-110 transition-transform`}>
                       <item.icon size={24} className="text-white" />
                     </div>
                     <div>
