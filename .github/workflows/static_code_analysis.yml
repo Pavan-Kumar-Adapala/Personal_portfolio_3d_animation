@@ -76,4 +76,4 @@ jobs:
           projectBaseDir: .
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: http://ec2-3-148-248-97.us-east-2.compute.amazonaws.com:9000
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
