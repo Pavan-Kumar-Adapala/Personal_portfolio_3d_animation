@@ -18,6 +18,7 @@ jobs:
     # and the branch is Prod
     if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'Prod' }}
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -28,13 +29,13 @@ jobs:
       - name: Allow insecure registries
         run: |
           sudo mkdir -p /etc/docker
-          echo '{"insecure-registries": ["${{ secrets.NEXUS_REGISTRY_URL }}"]}' | sudo tee /etc/docker/daemon.json
+          echo "{\"insecure-registries\": [\"${{ secrets.NEXUS_REGISTRY_URL }}\"]}" | sudo tee /etc/docker/daemon.json
           sudo systemctl restart docker
 
       - name: Log in to Nexus Docker Registry
         uses: docker/login-action@v2
         with:
-          registry: ${{ secrets.NEXUS_REGISTRY_URL }} 
+          registry: ${{ secrets.NEXUS_REGISTRY_URL }}
           username: ${{ secrets.NEXUS_USERNAME }}
           password: ${{ secrets.NEXUS_PASSWORD }}
 
@@ -46,4 +47,4 @@ jobs:
           push: true
           tags: |
             ${{ secrets.NEXUS_REGISTRY_URL }}/portfolio3d-docker-images/portfolio-3d:latest
-  
+            
