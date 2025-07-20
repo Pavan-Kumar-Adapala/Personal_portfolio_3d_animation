@@ -67,6 +67,7 @@ jobs:
       - name: Build project
         run: npm run build
 
+
       # - name: Test SonarQube connectivity
       #   run: curl -v ${{ secrets.SONAR_HOST_URL }}
 
@@ -81,3 +82,18 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
+      # Upload to GitHub artifacts
+      - name: Upload dist/ as GitHub Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: vite-dist
+          path: dist/
+
+      # Upload to Nexus raw repo
+      - name: Upload dist/ to Nexus
+        run: |
+          zip -r dist.zip dist
+          curl -v -u ${{ secrets.NEXUS_USERNAME }}:${{ secrets.NEXUS_PASSWORD }} \
+            --upload-file dist.zip \
+            ${{ secrets.NEXUS_RAW_URL }}/dist-${{ github.sha }}.zip
