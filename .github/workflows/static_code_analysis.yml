@@ -104,20 +104,15 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: vite-dist
+          path: ./dist
 
       - name: Verify artifact contents
         run: |
           ls -la
 
-      # upload the dist/ directory to Nexus raw repository
-      - name: Create dist/ directory
-        run: mkdir -p dist
-
-      - name: Move files to dist/
-        run: mv ./* dist/ 
-      
-      - name: Zip dist/ folder
-        run: zip -r dist.zip dist/
+      - name: Zip downloaded artifact
+        run: |
+          zip -r dist.zip dist
 
       - name: Verify dist.zip before upload
         run: ls -lh dist.zip
