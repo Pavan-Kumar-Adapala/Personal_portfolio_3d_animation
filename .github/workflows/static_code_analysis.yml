@@ -92,31 +92,31 @@ jobs:
 
   upload_to_nexus:
     name: Upload to Nexus Repository
-    # if: ${{ github.event.workflow_run.head_branch == 'Prod' }}
+    # This job will only run if the static code analysis job is successful
+    # and the branch is Prod
+    if: ${{ github.event.workflow_run.head_branch == 'Prod' }}
     runs-on: ubuntu-latest
     needs: static_code_analysis
     permissions:
       actions: read
       contents: read
+    
     steps:
-      # in previous jon I already built the project and uploaded the dist/ directory as an artifact
+      # Download the dist/ artifact from the previous job
       - name: Download dist/ artifact
         uses: actions/download-artifact@v4
         with:
           name: vite-dist
           path: ./dist
 
-      - name: Verify artifact contents
-        run: |
-          ls -la
+      # - name: Verify artifact contents
+      #   run: |
+      #     ls -la
 
       - name: Zip downloaded artifact
         run: |
           zip -r dist.zip dist
-
-      - name: Verify dist.zip before upload
-        run: ls -lh dist.zip
-
+          
       - name: Upload dist.zip to Nexus raw repository
         run: |
           curl -v -u "${{ secrets.NEXUS_USERNAME }}:${{ secrets.NEXUS_PASSWORD }}" \
