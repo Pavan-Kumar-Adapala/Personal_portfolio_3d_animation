@@ -1,6 +1,6 @@
 # Deploy the vite + react + typescript project to GitHub Pages
 # This workflow builds the project and deploys it to GitHub Pages
-name: Deploy to GitHub Pages
+name: deploy_to_githubpage_pipeline
 # This workflow is triggered by the completion of the static code analysis pipeline
 on:
   workflow_run:
