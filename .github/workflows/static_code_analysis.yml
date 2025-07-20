@@ -108,6 +108,9 @@ jobs:
         with:
           name: vite-dist
 
+      - name: list all files and directories
+        run: ls -la
+
       # upload the dist/ directory to Nexus raw repository
       - name: Create dist/ directory
         run: mkdir -p dist
@@ -123,4 +126,3 @@ jobs:
           curl -v -u "${{ secrets.NEXUS_USERNAME }}:${{ secrets.NEXUS_PASSWORD }}" \
             --upload-file dist.zip \
             ${{ secrets.NEXUS_RAW_URL }}/dist-${{ github.sha }}.zip
-            
