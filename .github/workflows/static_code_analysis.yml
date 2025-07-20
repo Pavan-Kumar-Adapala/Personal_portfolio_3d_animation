@@ -67,8 +67,8 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Test SonarQube connectivity
-        run: curl -v ${{ secrets.SONAR_HOST_URL }}
+      # - name: Test SonarQube connectivity
+      #   run: curl -v ${{ secrets.SONAR_HOST_URL }}
 
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@v2
