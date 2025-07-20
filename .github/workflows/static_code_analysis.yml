@@ -108,17 +108,19 @@ jobs:
       - name: Verify artifact contents
         run: |
           ls -la
-          ls -la vite-dist
 
       # upload the dist/ directory to Nexus raw repository
       - name: Create dist/ directory
         run: mkdir -p dist
 
       - name: Move files to dist/
-        run: mv vite-dist/* dist/ 
+        run: mv ./* dist/ 
+      
+      - name: Zip dist/ folder
+        run: zip -r dist.zip dist/
 
-      - name: List dist.zip before upload
-        run: ls -la dist.zip
+      - name: Verify dist.zip before upload
+        run: ls -lh dist.zip
 
       - name: Upload dist.zip to Nexus raw repository
         run: |
