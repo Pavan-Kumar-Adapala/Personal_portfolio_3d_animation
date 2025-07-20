@@ -99,17 +99,16 @@ jobs:
       actions: read
       contents: read
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
       # in previous jon I already built the project and uploaded the dist/ directory as an artifact
       - name: Download dist/ artifact
         uses: actions/download-artifact@v4
         with:
           name: vite-dist
 
-      - name: list all files and directories
-        run: ls -la
+      - name: Verify artifact contents
+        run: |
+          ls -la
+          ls -la vite-dist
 
       # upload the dist/ directory to Nexus raw repository
       - name: Create dist/ directory
