@@ -96,7 +96,7 @@ jobs:
     name: Upload to Nexus Repository
     # This job will only run if the static code analysis job is successful
     # and the branch is Prod
-    if: ${{ github.event.workflow_run.head_branch == 'Prod' }}
+    # if: ${{ github.event.workflow_run.head_branch == 'Prod' }}
     runs-on: ubuntu-latest
     needs: static_code_analysis
     permissions:
