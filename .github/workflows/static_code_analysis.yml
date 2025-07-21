@@ -54,6 +54,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -72,7 +74,7 @@ jobs:
       #   run: curl -v ${{ secrets.SONAR_HOST_URL }}
 
       - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@v2
+        uses: SonarSource/sonarqube-scan-action@v5
         with:
           projectBaseDir: .
           args: >
@@ -116,7 +118,7 @@ jobs:
       - name: Zip downloaded artifact
         run: |
           zip -r dist.zip dist
-          
+
       - name: Upload dist.zip to Nexus raw repository
         run: |
           curl -v -u "${{ secrets.NEXUS_USERNAME }}:${{ secrets.NEXUS_PASSWORD }}" \
