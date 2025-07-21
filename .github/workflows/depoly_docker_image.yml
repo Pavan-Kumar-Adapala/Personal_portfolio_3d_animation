@@ -40,3 +40,4 @@ jobs:
           file: Dockerfile
           push: true
           tags: Nexus-repo-ALB-1842815083.us-east-2.elb.amazonaws.com/portfolio3d-docker-images/portfolio-3d:latest
+
