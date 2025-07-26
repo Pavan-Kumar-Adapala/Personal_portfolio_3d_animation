@@ -3,8 +3,8 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/', // Personal_portfolio_3d_animation/', Base path only for the github pages deployment
   plugins: [react()],
+  base: '/', // or '/Personal_portfolio_3d_animation/' if using GitHub Pages without a custom domain
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
@@ -18,11 +18,6 @@ export default defineConfig({
     // If you want to use a different protocol or port for HMR, you can specify
     // them here. By default, it uses WebSocket on the same host and port as
     // the server.
-    hmr: {
-      protocol: 'ws', // Use WebSocket for HMR
-      host: 'localhost', // Specify the host for HMR
-      port: 5173, // Specify the port for HMR
-    },
   },
   build: {
     outDir: 'dist', // Specify the output directory for the build
