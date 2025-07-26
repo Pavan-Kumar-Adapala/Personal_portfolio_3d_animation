@@ -73,17 +73,17 @@ jobs:
       # - name: Test SonarQube connectivity
       #   run: curl -v ${{ secrets.SONAR_HOST_URL }}
 
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
-        with:
-          projectBaseDir: .
-          args: >
-            -Dsonar.projectKey=Personal_portfolio_3d
-            -Dsonar.sources=.
-            -Dsonar.branch.name=${{ github.ref_name }}
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      # - name: SonarQube Scan
+      #   uses: SonarSource/sonarqube-scan-action@v5
+      #   with:
+      #     projectBaseDir: .
+      #     args: >
+      #       -Dsonar.projectKey=Personal_portfolio_3d
+      #       -Dsonar.sources=.
+      #       -Dsonar.branch.name=${{ github.ref_name }}
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
       # Upload to GitHub artifacts
       - name: Upload dist/ as GitHub Artifact
@@ -92,35 +92,34 @@ jobs:
           name: vite-dist
           path: dist/
 
-  upload_to_nexus:
-    name: Upload to Nexus Repository
-    # This job will only run if the static code analysis job is successful
-    # and the branch is Prod
-    # if: ${{ github.event.workflow_run.head_branch == 'Prod' }}
-    runs-on: ubuntu-latest
-    needs: static_code_analysis
-    permissions:
-      actions: read
-      contents: read
-    
-    steps:
-      # Download the dist/ artifact from the previous job
-      - name: Download dist/ artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: vite-dist
-          path: ./dist
+  # upload_to_nexus:
+  #   name: Upload to Nexus Repository
+  #   # This job will only run if the static code analysis job is successful
+  #   # and the branch is Prod
+  #   # if: ${{ github.event.workflow_run.head_branch == 'Prod' }}
+  #   runs-on: ubuntu-latest
+  #   needs: static_code_analysis
+  #   permissions:
+  #     actions: read
+  #     contents: read
+  #   steps:
+  #     # Download the dist/ artifact from the previous job
+  #     - name: Download dist/ artifact
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: vite-dist
+  #         path: ./dist
 
-      # - name: Verify artifact contents
-      #   run: |
-      #     ls -la
+  #     # - name: Verify artifact contents
+  #     #   run: |
+  #     #     ls -la
 
-      - name: Zip downloaded artifact
-        run: |
-          zip -r dist.zip dist
+  #     - name: Zip downloaded artifact
+  #       run: |
+  #         zip -r dist.zip dist
 
-      - name: Upload dist.zip to Nexus raw repository
-        run: |
-          curl -v -u "${{ secrets.NEXUS_USERNAME }}:${{ secrets.NEXUS_PASSWORD }}" \
-            --upload-file dist.zip \
-            ${{ secrets.NEXUS_RAW_URL }}/dist-${{ github.sha }}.zip
+  #     - name: Upload dist.zip to Nexus raw repository
+  #       run: |
+  #         curl -v -u "${{ secrets.NEXUS_USERNAME }}:${{ secrets.NEXUS_PASSWORD }}" \
+  #           --upload-file dist.zip \
+  #           ${{ secrets.NEXUS_RAW_URL }}/dist-${{ github.sha }}.zip
