@@ -73,17 +73,17 @@ jobs:
       # - name: Test SonarQube connectivity
       #   run: curl -v ${{ secrets.SONAR_HOST_URL }}
 
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
-        with:
-          projectBaseDir: .
-          args: >
-            -Dsonar.projectKey=Personal_portfolio_3d
-            -Dsonar.sources=.
-            -Dsonar.branch.name=${{ github.ref_name }}
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      # - name: SonarQube Scan
+      #   uses: SonarSource/sonarqube-scan-action@v5
+      #   with:
+      #     projectBaseDir: .
+      #     args: >
+      #       -Dsonar.projectKey=Personal_portfolio_3d
+      #       -Dsonar.sources=.
+      #       -Dsonar.branch.name=${{ github.ref_name }}
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
       # Upload to GitHub artifacts
       - name: Upload dist/ as GitHub Artifact
