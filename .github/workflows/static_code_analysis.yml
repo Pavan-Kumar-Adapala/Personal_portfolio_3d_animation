@@ -102,7 +102,6 @@ jobs:
   #   permissions:
   #     actions: read
   #     contents: read
-    
   #   steps:
   #     # Download the dist/ artifact from the previous job
   #     - name: Download dist/ artifact
