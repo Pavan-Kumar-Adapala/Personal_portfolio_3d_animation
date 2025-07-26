@@ -45,7 +45,7 @@ jobs:
       
       # Custom domain name for GitHub Pages
       - name: Add CNAME file
-        run: echo "www.pavanclouds.com" > dist/CNAME
+        run: echo "www.pavanclouds.com" > dist/CNAME # Add your custom domain here
 
       - name: upload build artifacts
         uses: actions/upload-artifact@v4
