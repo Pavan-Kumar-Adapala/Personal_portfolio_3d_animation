@@ -49,6 +49,10 @@ In addition to building and deploying the application, I also implemented and fo
 These practices help ensure that the codebase stays clean, secure, and collaborative — aligning with real-world engineering workflows.
 
 ---
+## Custom domain in github pages
+ - https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages
+
+---
 
 ## 🐳 Future Work: Containerization & GitOps
 
