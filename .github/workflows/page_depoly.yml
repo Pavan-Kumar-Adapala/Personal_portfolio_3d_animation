@@ -133,7 +133,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: gh-pages
-          custom_domain: www.pavanclouds.com # Replace with your custom domain if needed
 
 
   # upload_to_nexus:
