@@ -3,8 +3,8 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/', // Personal_portfolio_3d_animation/', Base path only for the github pages deployment
   plugins: [react()],
+  base: '/', // or '/Personal_portfolio_3d_animation/' if using GitHub Pages without a custom domain
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
