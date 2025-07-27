@@ -51,7 +51,7 @@ const About = () => {
                   transition={{ duration: 0.8, delay: 0.6 }}
                   className="text-gray-300 text-lg leading-relaxed"
                 >
-                  I specialize in building scalable, secure, and efficient cloud
+                  I have experience in building scalable, secure, and efficient cloud
                   solutions using Python and Bash scripting, AWS, and modern DevOps practices.
                   My goal is to bridge the gap between development and
                   operations, ensuring smooth and reliable software delivery.
