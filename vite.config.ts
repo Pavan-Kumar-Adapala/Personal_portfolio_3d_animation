@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), tsconfigPaths()],
   base: '/', // or '/Personal_portfolio_3d_animation/' if using GitHub Pages without a custom domain
   optimizeDeps: {
     exclude: ['lucide-react'],

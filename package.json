@@ -11,11 +11,16 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@radix-ui/react-tooltip": "^1.2.7",
     "caniuse-lite": "^1.0.30001726",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "framer-motion": "^10.16.16",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
@@ -33,6 +38,7 @@
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.5.3",
-    "vite": "^7.0.2"
+    "vite": "^7.0.2",
+    "vite-tsconfig-paths": "^5.1.4"
   }
 }
