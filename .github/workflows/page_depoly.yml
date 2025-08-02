@@ -75,7 +75,7 @@ jobs:
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
         with:
-        projectBaseDir: .
+          projectBaseDir: .
           args: >
             -Dsonar.projectKey=Personal_portfolio_3d
             -Dsonar.sources=.
