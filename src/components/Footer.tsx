@@ -79,7 +79,7 @@ const Footer = () => {
             </motion.div>
             
             <div className="text-gray-400 text-center md:text-right">
-              <p>&copy; {currentYear} Pavan Kumar Adapala. All rights reserved.</p>
+              <p>&copy; {currentYear} pavanclouds.com. All rights reserved.</p>
               <p className="text-sm mt-1">
                 Built with React, TypeScript, and Framer Motion
               </p>
