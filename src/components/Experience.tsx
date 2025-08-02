@@ -15,14 +15,13 @@ const Experience = () => {
       location: 'Bietigheim-Bissingen, Germany',
       period: '02/2024 - 07/2024',
       description: [
-        'Thesis Topic: "Modelling concepts for forecasting the energy consumption in industrial paint shops: An in-depth analytics study"',
-        'Developed iterative and batch ML models with 95% forecasting accuracy',
-        'Improved the quality of time-series data by 35% through preprocessing and feature engineering',
-        'Evaluated models and identified key influencing features using analytics'
+        'Thesis Topic: "Modelling concepts for forecasting the energy consumption in industrial paint shops"',
+        'Developed and evaluated batch and one-step-ahead forecasting models, achieving 95% accuracy in predicting energy consumption',
+        'Improved model performance by 15% using feature engineering and identification of key influencing features',
       ],
       technologies: ['Python', 'Exploratory Data Analysis (EDA)', 'Time series forecasting', 'Data pipelines', 'Machine Learning (ML)', 
         'Feature engineering', 'Data-driven decision making', 'Exclude commissioning period', 'Plausibility checks'],
-      achievements: '95% forecasting accuracy, 35% time-series data quality improvement'
+      achievements: '95% forecasting accuracy, 15% model performance improvement'
     },
     {
       title: 'Software Integrator - Research Internship',
@@ -31,7 +30,7 @@ const Experience = () => {
       period: '05/2023 - 01/2024',
       description: [
         'Designed and optimized Jenkins pipelines to streamline CI/CD workflows for advanced driver-assistance (ADAS) parking system software',
-        'Automated debugging tasks by integrating Python scripts with REST APIs, reducing issue resolution time by 30%',
+        'Developed data-driven automation strategies by integrating Python scripts with REST APIs, reducing debugging time by 30% and accelerating root cause analysis',
         'Built a centralized Grafana dashboard for monitoring CI/CD builds across multiple projects, enabling data-driven release planning and performance insights',
         'Co-developed a modular Python GUI for productivity KPI, improving team output by 15%',
         'Developed an automated hardware management framework for assets management, saving 15.000 euros'
@@ -63,7 +62,7 @@ const Experience = () => {
         'Implemented CI/CD pipelines using Jenkins Master-Slave architecture to automate deployments on AWS, accelerating release cycles',
         'Designed and deployed a scalable 3-tier AWS architecture to host a web application, ensuring high availability and fault tolerance'
       ],
-      technologies: ['AWS', 'Python', 'Bash', 'Git & GitHub'],
+      technologies: ['AWS Services', 'Networking', 'Secuirty', 'Python', 'Bash', 'Git & GitHub'],
       achievements: 'Reduced data retrieval time by 30%, Reduced operational costs by 25%'
     }
   ];

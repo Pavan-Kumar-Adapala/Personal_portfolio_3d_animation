@@ -1,9 +1,55 @@
-import { useState } from 'react'; // React,
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion, useMotionValue, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
 import { ExternalLink, Github, Play, X, Eye } from 'lucide-react';
 
+
+// ------------- TiltCard Component -------------
+const TiltCard = ({ children }) => {
+  const cardRef = useRef(null);
+  const rotateX = useMotionValue(0);
+  const rotateY = useMotionValue(0);
+
+  const handleMouseMove = (e) => {
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    rotateX.set(((y - centerY) / centerY) * 15);
+    rotateY.set(((centerX - x) / centerX) * 15);
+  };
+
+  const handleMouseLeave = () => {
+    rotateX.set(0);
+    rotateY.set(0);
+  };
+
+  return (
+    <div style={{ perspective: 800 }}>
+      <motion.div
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          rotateX,
+          rotateY,
+          transformStyle: 'preserve-3d',
+        }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+        className="your-card-class"
+      >
+        {children}
+      </motion.div>
+    </div>
+  );
+};
+
+// ------------- Projects Component -------------
 const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true }); // threshold: 0.1
@@ -11,18 +57,38 @@ const Projects = () => {
 
   const projects = [
     {
+      title: 'Optimization of CI/CD Processes and Monitoring Systems for Autonomous Parking Software Development (ADAS)',
+      description: 'Streamlined testing and monitoring for ADAS software to enhance delivery reliability and reduced debugging time by 30%.',
+      image: 'https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=800',
+      technologies: ['Python & Bash Scripting', 'RESTAPIs', 'Jenkins', 'JFrog Artifactory', 'Git & Bitbucket', 'JIRA', 'Grafana', 'PostgreSQL'],
+      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/ADAS_CICD.png?raw=true',
+      github: '#',
+      demo: '#',
+      category: 'DevOps, CI/CD, ADAS',
+      detailedDescription: [
+        'Automated nightly CTC and smoke test pipelines by integrating Python scripts to extract test reports and generate visual summaries from artifacts, reducing debugging time by 30%',
+        'Co-developed a Jenkins pipeline for PDX container creation and flashing the Parking ECU (FPM Core), reducing manual effort and enhancing traceability in line with ISO 27001:2022 automotive data integrity standards',
+        'Developed a centralized Grafana dashboard using advanced PostgreSQL queries to monitor the development process in real time and support data-driven decision-making across parking software projects'
+      ],
+      metrics: {
+        Reduceddebuggingtime: '30%',
+        Qualitystandard: 'ISO 27001:2022',
+      }
+    },
+    {
       title: 'Deployment of Django Web Application on AWS',
       description: 'Deployed the web application on a scalable 3-tier architecture, implementing Auto Scaling and an Elastic Load Balancer (ELB) to ensure a secure and scalable AWS infrastructure.',
       image: 'https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=800',
       technologies: ['AWS (CodePipeline, EC2, VPC, IAM, Route 53, Elastic Load Balancer, AutoScaling, RDS, S3, SES, CloudWatch)', 'Git', 'GitHub', 'Linux (Ubuntu)', 'Python & Bash scripting', 'Nginx Web Server'],
-      // architecture: '/images/aws_django.png',
-      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/aws_django.png?raw=true',
+      architecture: '/images/aws_django.png', 
+      // architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/aws_django.png?raw=true',
       github: '#',
       demo: '#',
       category: 'AWS, 3-Tier Architecture',
       detailedDescription: [
-        'Designed and deployed AWS cloud infrastructure to host a Django-based vehicle quality testing application, ensuring high availability and cost efficiency',
+        'Designed and deployed a scalable 3-tier AWS architecture to host a Django web application (vehicle quality testing), ensuring high availability and cost efficiency',
         'Configured EC2 Auto Scaling and Load Balancer to optimize performance',
+        'Implemented CI/CD pipelines using Jenkins Master-Slave architecture to automate deployments and accelerating release cycles', 
         'Implemented custom monitoring dashboard and alert mechanisum using AWS CloudWatch and SES services, enabling proactive issue resolution',
         'Secured RDS–EC2 data flow using VPC and IAM policies to enforce least-privilege access',
         'Improved query performance by 30% and reduced operational costs by 25% through cloud migration'
@@ -49,48 +115,7 @@ const Projects = () => {
       metrics: {
         servers: 'AWS EC2, On-premises VM',
         setupTimeReduced: '30%',
-        accessSecurity: '100% encrypted (VPN + proxy)'
-      }
-    },
-    {
-      title: 'Secure Serverless Website Hosting',
-      description: 'Hosted a static portfolio on AWS S3 with CloudFront integration for fast, secure global delivery.',
-      image: 'https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['AWS S3', 'AWS CloudFront', 'AWS IAM', 'Origin Access Identity (OAI)', 'S3 Bucket Policies', 'HTML/CSS/JavaScript', 'Terraform'],
-      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/AWS_serverless_static_website.png?raw=true',
-      github: 'https://github.com/Pavan-Kumar-Adapala/Portfolio_project_Adapala',
-      demo: '#',
-      category: 'AWS, Serverless',
-      detailedDescription: [
-        'Improved content delivery speed and reliability by hosting the portfolio website on AWS S3 with CloudFront CDN using a secure serverless architecture',
-        'Configured Origin Access Identity (OAI) and S3 bucket policies to enforce secure, restricted access'
-      ],
-      metrics: {
-        loadTimeImprovement: '50%',
-        hostingCost: '<$1/month',
-        uptime: '100%',
-        latency: '<80ms (via CloudFront)',
-        publicAccessRisk: '0% (OAI enforced)',
-        maintenance: '0 server ops required'
-      }
-    },
-    {
-      title: 'Optimization of CI/CD Processes and Monitoring Systems for Autonomous Parking Software Development (ADAS)',
-      description: 'Streamlined testing and monitoring for ADAS software to enhance delivery reliability and reduced debugging time by 30%.',
-      image: 'https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['Python & Bash Scripting', 'RESTAPIs', 'Jenkins', 'JFrog Artifactory', 'Git & Bitbucket', 'JIRA', 'Grafana', 'PostgreSQL'],
-      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/ADAS_CICD.png?raw=true',
-      github: '#',
-      demo: '#',
-      category: 'DevOps, CI/CD, ADAS',
-      detailedDescription: [
-        'Automated nightly CTC and smoke test pipelines by integrating Python scripts to extract test reports and generate visual summaries from artifacts, reducing debugging time by 30%',
-        'Co-developed a Jenkins pipeline for PDX container creation and flashing the Parking ECU (FPM Core), reducing manual effort and enhancing traceability in line with ISO 27001:2022 automotive data integrity standards',
-        'Developed a centralized Grafana dashboard using advanced PostgreSQL queries to monitor the development process in real time and support data-driven decision-making across parking software projects'
-      ],
-      metrics: {
-        Reduceddebuggingtime: '30%',
-        Qualitystandard: 'ISO 27001:2022',
+        accessSecurity: 'Secured tunnel (VPN + reverse proxy)'
       }
     },
     {
@@ -115,6 +140,28 @@ const Projects = () => {
         manualDeployments: '0',
         releaseReadiness: 'Every merge to main',
         imageTagging: 'Latest (versioning ready)'
+      }
+    },
+    {
+      title: 'Secure Serverless Website Hosting',
+      description: 'Hosted a static portfolio on AWS S3 with CloudFront integration for fast, secure global delivery.',
+      image: 'https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=800',
+      technologies: ['AWS S3', 'AWS CloudFront', 'AWS IAM', 'Origin Access Identity (OAI)', 'S3 Bucket Policies', 'HTML/CSS/JavaScript', 'Terraform'],
+      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/AWS_serverless_static_website.png?raw=true',
+      github: 'https://github.com/Pavan-Kumar-Adapala/Portfolio_project_Adapala',
+      demo: '#',
+      category: 'AWS, Serverless',
+      detailedDescription: [
+        'Improved content delivery speed and reliability by hosting the portfolio website on AWS S3 with CloudFront CDN using a secure serverless architecture',
+        'Configured Origin Access Identity (OAI) and S3 bucket policies to enforce secure, restricted access'
+      ],
+      metrics: {
+        loadTimeImprovement: '50%',
+        hostingCost: '<$1/month',
+        uptime: '100%',
+        latency: '<80ms (via CloudFront)',
+        publicAccessRisk: '0% (OAI enforced)',
+        maintenance: '0 server ops required'
       }
     },
     {
@@ -214,7 +261,7 @@ const Projects = () => {
             Featured Projects
           </h2>
           <p className="text-gray-400 text-lg max-w-3xl mx-auto">
-            A showcase of my DevOps and cloud engineering projects, featuring infrastructure automation, 
+            A showcase of my DevOps, cloud engineering, and automation projects, featuring infrastructure automation, 
             CI/CD pipelines, and scalable cloud solutions
           </p>
         </motion.div>
@@ -226,87 +273,88 @@ const Projects = () => {
           className="grid md:grid-cols-2 gap-8"
         >
           {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden shadow-2xl border border-gray-700 hover:border-blue-500/50 transition-all duration-300"
-            >
-              <div className="relative overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
-                <div className="absolute top-4 right-4">
-                  <span className="bg-blue-500/80 text-white px-3 py-1 rounded-full text-sm font-medium">
-                    {project.category}
-                  </span>
+            <TiltCard key={index}>
+              <motion.div
+                variants={itemVariants}
+                whileHover={{ y: -10, scale: 1.02 }}
+                className="group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden shadow-2xl border border-gray-700 hover:border-blue-500/50 transition-all duration-300"
+              >
+                <div className="relative overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                  <div className="absolute top-4 right-4">
+                    <span className="bg-blue-500/80 text-white px-3 py-1 rounded-full text-sm font-medium">
+                      {project.category}
+                    </span>
+                  </div>
                 </div>
-              </div>
               
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
-                  {project.title}
-                </h3>
-                
-                <p className="text-gray-300 mb-4 leading-relaxed">
-                  {project.description}
-                </p>
-                
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.map((tech, i) => (
-                    <motion.span
-                      key={tech}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 + i * 0.05 }}
-                      className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-300 px-2 py-1 rounded-lg text-xs border border-blue-500/30"
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+                    {project.title}
+                  </h3>
+                  
+                  <p className="text-gray-300 mb-4 leading-relaxed">
+                    {project.description}
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.technologies.map((tech, i) => (
+                      <motion.span
+                        key={tech}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.3, delay: index * 0.1 + i * 0.05 }}
+                        className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-300 px-2 py-1 rounded-lg text-xs border border-blue-500/30"
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </div>
+                  
+                  <div className="flex space-x-4">
+                    <motion.a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
                     >
-                      {tech}
-                    </motion.span>
-                  ))}
+                      <Github size={18} />
+                      <span>Code</span>
+                    </motion.a>
+                    
+                    <motion.a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors"
+                    >
+                      <Play size={18} />
+                      <span>Demo</span>
+                    </motion.a>
+                    
+                    <motion.button
+                      onClick={() => setSelectedProject(index)}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex items-center space-x-2 text-purple-400 hover:text-purple-300 transition-colors"
+                    >
+                      <Eye size={18} />
+                      <span>Details</span>
+                    </motion.button>
+                  </div>
                 </div>
-                
-                <div className="flex space-x-4">
-                  <motion.a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
-                  >
-                    <Github size={18} />
-                    <span>Code</span>
-                  </motion.a>
-                  
-                  <motion.a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors"
-                  >
-                    <Play size={18} />
-                    <span>Demo</span>
-                  </motion.a>
-                  
-                  <motion.button
-                    onClick={() => setSelectedProject(index)}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center space-x-2 text-purple-400 hover:text-purple-300 transition-colors"
-                  >
-                    <Eye size={18} />
-                    <span>Details</span>
-                  </motion.button>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            </TiltCard>
+            ))}
         </motion.div>
 
         {/* Project Detail Modal */}
@@ -419,7 +467,5 @@ const Projects = () => {
     </section>
   );
 };
-
-
 
 export default Projects;
