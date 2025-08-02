@@ -154,8 +154,8 @@ jobs:
           file: Dockerfile
           push: true
           tags: |
-            docker.pavanclouds.com/myapp:latest
-            docker.pavanclouds.com/myapp:${{ github.ref_name }}
+            # docker.pavanclouds.com/myapp:latest
+            docker.pavanclouds.com/myapp:${{ github.ref_name }} # if you want to tag the image with the branch name
   
 
   # Another stage to deploy the built project to github pages using gh-pages and custom domain
