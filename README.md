@@ -226,3 +226,5 @@ It’s built using:
 **Hosting & Networking:** AWS ALB, GitHub Pages
 **Version Control:** Git, GitHub Branch Protection Rules
 **Future Work:** Kubernetes, ArgoCD, GitOps
+
+![Architecture diagram](./readme_imgs/CI_CD.png)
