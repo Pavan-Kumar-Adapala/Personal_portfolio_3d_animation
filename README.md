@@ -1,6 +1,10 @@
-# Personal Portfolio 3D Animation
+# **Personal Portfolio 3D Animation – DevOps Implementation Case Study**
 
-This is my personal portfolio application and built with:
+## **Overview**
+
+This project is my personal portfolio application, showcasing my skills in **frontend development** and **DevOps/cloud engineering**.
+It’s built using:
+
 * **React** (frontend framework)
 * **TypeScript** (type-safe JavaScript)
 * **Framer Motion** (animations)
@@ -8,14 +12,30 @@ This is my personal portfolio application and built with:
 
 ---
 
-## 🚀 CI/CD Pipeline development, Infrastrure Provisioning and Configuration management
+## **🚀 DevOps & Cloud Implementation**
 
-Implemented CI/CD pipelines using **GitHub Actions** workflows to ensure high-quality code, application containerization, and automated deployment.
+* Implemented **GitHub Actions** workflows for:
+
 ![CI/CD pipeline](./readme_imgs/github_pipeline.png)
 
-### Stage 01: Liniting 
-### Stage 02: Static code analysis using SonarQube#
-  #### SonarQube server
+  * **Linting** (Stage 01)
+  * **Static code analysis** with **SonarQube** (Stage 02)
+  * **Parallel build & artifact upload** to **Nexus Repository Manager** (Stage 03)
+  * **Automated deployment** to **GitHub Pages** with a custom domain (Stage 04)
+
+---
+
+### **2. Static Code Analysis – SonarQube**
+
+* **Self-hosted SonarQube** server provisioned on Ubuntu.
+* Installed **Docker & Docker Compose** for containerized SonarQube and PostgreSQL.
+* Configured **GitHub Actions** to upload reports to the SonarQube server for:
+
+  * Code quality checks
+  * Maintainability ratings
+  * Security vulnerability scanning
+
+  Note:
   - Inside server installed docker and docker compose
     
     ```bash
@@ -47,6 +67,7 @@ Implemented CI/CD pipelines using **GitHub Actions** workflows to ensure high-qu
     sudo usermod -aG docker "$USER"
     echo "Docker installed. Please log out & back in or run 'newgrp docker' to apply group change."
     ```
+    
   - docker compose file to access SonarQube server
 
     ```yaml
@@ -107,11 +128,23 @@ Implemented CI/CD pipelines using **GitHub Actions** workflows to ensure high-qu
   ![Token creation inside SonarQube server](./readme_imgs/token.png)
   ![Adding action secrets inside GitHub](./readme_imgs/github_secrets.png)
 
-### Stage 03: Parallel stages 
-  - Upload application build artificats to Nexus hosted raw repository
-  - Build the docker image and push the image to Nexus hosted repository
+---
 
-  * Inside server installed docker and docker compose
+### **3. Artifact Management – Nexus Repository**
+
+* Deployed **Sonatype Nexus** via Docker Compose.
+* Configured:
+
+  * **Raw repository** for application build artifacts
+  * **Docker hosted repository** for container images
+* Integrated with CI/CD to:
+
+  * Upload build artifacts automatically
+  * Push container images to Nexus Docker registry
+  * Configured **AWS Application Load Balancer (ALB)** as a reverse proxy with security groups.
+
+  Note:
+
   * docker compose file to access Nexus server
 
   ```yaml
@@ -134,10 +167,12 @@ Implemented CI/CD pipelines using **GitHub Actions** workflows to ensure high-qu
   ![Raw hosted repository](./readme_imgs/raw_repo.png)
   ![Docker hosted repository](./readme_imgs/docker_repo.png)
 
+---
 
-### Stage 04: Depoly the application on GitHub Pages using custom domain
-  * Uses the `gh-pages` branch as the source (configured under Pages → Source → Deploy from a branch).
-  
+### **4. Deployment – GitHub Pages**
+
+* Automated deployment from `gh-pages` branch.
+* Configured **custom domain** and DNS settings for professional hosting.
   #### Custom domain in github pages
   - https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages
 
@@ -145,49 +180,49 @@ Implemented CI/CD pipelines using **GitHub Actions** workflows to ensure high-qu
 
 ---
 
-## Additional Tasks
+## **🛠 Infrastructure & Configuration Management**
 
-### **Code Review & Branching Strategy:**
-
-![Branching Strategy](https://raw.githubusercontent.com/Pavan-Kumar-Adapala/Portfolio_project_Adapala/main/assets/img/branching_strategy.jpg)
-
-In addition to building and deploying the application, I also implemented and followed **best practices for collaboration and code quality**:
-
-* 📝 Performed **code reviews** on Pull Requests (PRs) to ensure code quality, maintainability, and adherence to standards.
-* 🔀 Designed and followed a clear **branching strategy**:
-
-  * **main (default):** Production-ready code.
-  * **development:** Integration branch for testing new features.
-  * Short-lived **feature branches** for implementing specific functionalities.
-  * **hotfix branches** for urgent fixes, merged back into both `main` and `development` branches.
-  * **release branch:** Stabilized and tested code before merging to `main`.
-  
-  Note:
-  * Feature branches — created for new work or bug fixes, merged into `development` after PR review & CI success.
-  * 🔒 Enabled **branch protection rules**:
-  * Required passing CI checks before merging.
-  * Enforced PR reviews from peers or myself before merge.
-
-These practices help ensure that the codebase stays clean, secure, and collaborative — aligning with real-world engineering workflows.
-
-### **Resolved Code Conflicts**
-
-### **Application containerization using multi-stage Dockerfile**
-  - I have already written a **multi-stage Dockerfile** to containerize the application.
+* Provisioned servers manually using **shell scripting** and **Docker Compose**.
+* Configured **security groups** for controlled access to SonarQube, Nexus, and ALB.
+* Wrote **multi-stage Dockerfile** for optimized application containerization.
 
 ---
 
-## 🐳 Future Work: GitOps
+## **📌 Branching Strategy & Collaboration**
 
-Planned enhancements include:
+* Implemented **Git workflow best practices**:
 
-* Setting up a Kubernetes cluster on AWS (using **kubeadm**).
-* Installing **ArgoCD** to implement GitOps:
+  ![Branching Strategy](https://raw.githubusercontent.com/Pavan-Kumar-Adapala/Portfolio_project_Adapala/main/assets/img/branching_strategy.jpg)
 
-  * Automatically update Kubernetes manifests with the new image tags.
-  * Sync changes so that ArgoCD updates pods with the new image in the cluster.
+  * `main` – production-ready code
+  * `development` – integration branch
+  * Short-lived **feature branches**
+  * **Hotfix branches** for urgent fixes
+  * **Release branches** for staging before production
+  * Enforced **branch protection rules**:
+
+  * Mandatory **CI checks** before merge
+  * **Code review approval** before integration
+  * Resolved Code Conflicts
 
 ---
 
-## 📄 Summary
+## **🐳 Future Enhancements – GitOps**
 
+* Deploy Kubernetes cluster on AWS via **kubeadm**
+* Install **ArgoCD** for GitOps-based deployments:
+
+  * Automatic manifest updates
+  * Continuous sync to Kubernetes pods with new image versions
+
+---
+
+## **Key DevOps Tools & Technologies**
+
+**CI/CD:** GitHub Actions
+**Code Quality:** SonarQube
+**Artifact Management:** Nexus Repository
+**Containerization:** Docker, Docker Compose
+**Hosting & Networking:** AWS ALB, GitHub Pages
+**Version Control:** Git, GitHub Branch Protection Rules
+**Future Work:** Kubernetes, ArgoCD, GitOps
