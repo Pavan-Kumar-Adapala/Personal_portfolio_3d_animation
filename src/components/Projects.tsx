@@ -119,27 +119,25 @@ const Projects = () => {
       }
     },
     {
-      title: 'End-to-End CI/CD for Portfolio Website',
-      description: 'Built a fully automated, serverless CI/CD pipeline to deploy and scale a personal portfolio site.',
+      title: 'End-to-End CI/CD Pipeline for React Application',
+      description: 'Implemented an end-to-end CI/CD pipeline for a personal portfolio website to simulate real-world DevOps workflows, using GitHub Actions, Docker, SonarQube, Nexus, AWS EC2, ALB, and GitHub Pages, resulting in automated build, quality checks, artifact management, and seamless deployment to production.',
       image: 'https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['GitHub Actions', 'GitHub Pages', 'Docker', 'Git Flow', 'HTML, CSS, JavaScript', 'Origin Access Identity (OAI)', 'S3 Bucket Policies', 'HTML/CSS/JavaScript', 'Terraform'],
-      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/docker_image_CD.png?raw=true',
-      github: 'https://github.com/Pavan-Kumar-Adapala/Portfolio_project_Adapala',
+      technologies: ['GitHub Actions', 'GitHub Pages', 'Docker', 'Docker Compose', 'SonarQube', 'Nexus Repository', 'AWS EC2', 'AWS Application Load Balancer (ALB)', 'AWS IAM', 'Vite', 'React', 'TypeScript', 'Tailwind CSS'],
+      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/CI_CD.png?raw=true',
+      github: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation',
       demo: '#',
-      category: 'Docker, CI/CD',
+      category: 'Docker, CI/CD, AWS, SonarQube, Nexus',
       detailedDescription: [
-        '🔄 CI/CD Automation: 100% automated deployments for both static and Dockerized versions',
-        '🐳 Containerization: Docker image build and push to DockerHub on every merge to main',
-        '🌿 Branching Strategy: Feature, release, hotfix, and dev branches managed through structured Git flow',
-        '✅ Code Quality: All changes reviewed and merged via PRs with enforced approvals'
+        'Built an end-to-end CI/CD pipeline using GitHub Actions and GitFlow to automate build, quality checks, artifact management, and deployment of a React application to GitHub Pages with a custom domain',
+        'Containerized the application using a multi-stage Dockerfile to reduce image size, ensure consistency, and enable reproducible deployments across environments',
+        'Integrated SonarQube for static code analysis (SAST) and Nexus Repository for artifact and Docker image hosting, deployed on AWS EC2 with Application Load Balancer for high availability',
+        'Outcome: Gained hands-on experience in CI/CD, integrating security tools, and containerizing applications to deliver scalable, production-grade digital solutions that streamline development and deployment workflows'
       ],
       metrics: {
-        deploymentAutomation: '100%',
-        containerBuilds: 'On every push to main',
-        codeReviewCoverage: '100% of PRs',
-        manualDeployments: '0',
-        releaseReadiness: 'Every merge to main',
-        imageTagging: 'Latest (versioning ready)'
+        DeploymentAutomation: '100% via GitHub Actions',
+        imageSize: '50% smaller than previous builds',
+        securityScans: '100% of builds',
+        codeReviewCoverage: '100% of PRs'
       }
     },
     {
