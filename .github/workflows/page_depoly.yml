@@ -233,7 +233,7 @@ jobs:
           exit-code: '0'
 
       - name: View SARIF contents
-        run: cat trivy-results.sarif
+        run: cat trivy-test-results.sarif
 
       # Upload results for test image
       - name: Upload Trivy results (test vulnerable image)
