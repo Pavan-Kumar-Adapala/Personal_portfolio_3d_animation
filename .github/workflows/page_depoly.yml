@@ -248,32 +248,11 @@ jobs:
           ref: ${{ github.ref_name }}
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }} # Must have repo access
   
-      # Install yq
-      - name: Install yq
+      - name: Update Docker image tag in deployment.yaml
         run: |
-          sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq
-          sudo chmod +x /usr/bin/yq
-          yq --version
-
-      # Update image and env values in deployment.yaml
-      - name: Update image and NODE_ENV
-        run: |
-          yq -i '
-            select(.kind == "Deployment" and .metadata.name == "portfolio-3d")
-            .spec.template.spec.containers[]
-            | select(.name == "portfolio-3d-container")
-            .image = "adapaladocker/personal_portfolio_3d:${{ github.ref_name }}-${{ github.sha }}"
-          ' k8s/deployment.yaml
-
-          yq -i '
-            select(.kind == "Deployment" and .metadata.name == "portfolio-3d")
-            .spec.template.spec.containers[]
-            | select(.name == "portfolio-3d-container")
-            .env[]
-            | select(.name == "NODE_ENV")
-            .value = "${{ github.ref_name }}"
-          ' k8s/deployment.yaml
-
+          sed -i "s|\(image:\s*\)adapaladocker/personal_portfolio_3d:[^[:space:]]*|\1adapaladocker/personal_portfolio_3d:${{ github.ref_name }}-${{ github.sha }}|" k8s/deployment.yaml
+          sed -i "s|\(name: NODE_ENV\s*value:\s*\).*|\1${{ github.ref_name }}|" k8s/deployment.yaml
+        
       # Commit and push changes
       - name: Commit and push changes
         run: |
