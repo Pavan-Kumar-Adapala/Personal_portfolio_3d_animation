@@ -180,36 +180,27 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-      
-      # Log in to Docker Hub
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          registry: docker.io
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }} # Use a personal access token for better security
-      
-      # Build and push the Docker image
-      - name: Build and push Docker image
+
+      # Build the Docker image (but do not push yet)
+      - name: Build Docker image
         uses: docker/build-push-action@v4
         with:
           context: .
           file: Dockerfile
-          push: true
+          push: false
           tags: adapaladocker/personal_portfolio_3d:${{ github.ref_name }} # Tag the image with the branch name
-      - name: Log out from Docker Hub
-        run: docker logout
 
-      # Scan the Docker image for vulnerabilities
+      # Scan the Docker image for vulnerabilities before pushing
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.28.0
         with:
-          image-ref: docker.io/adapaladocker/personal_portfolio_3d:${{ github.ref_name }} # Use the same tag as the pushed image
+          image-ref: adapaladocker/personal_portfolio_3d:${{ github.ref_name }} 
           format: sarif
           output: trivy-results.sarif
           severity: 'CRITICAL,HIGH,MEDIUM,LOW'
-          exit-code: '0' # Do not fail the job if vulnerabilities are found, but report them
-      
+          exit-code: '1' # Fail the job if vulnerabilities are found in the Dockerfile
+
+
       - name: Verify Trivy scan results
         run: |
           if [ -f trivy-results.sarif ]; then
@@ -228,6 +219,54 @@ jobs:
         with:
           sarif_file: 'trivy-results.sarif'
 
+      - name: Upload Docker image build logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-build-logs 
+
+      # Log in to Docker Hub
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          registry: docker.io
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }} # Use a personal access token for better security
+
+      # Push the Docker image to Docker Hub 
+      - name: Push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          tags: adapaladocker/personal_portfolio_3d:${{ github.ref_name }}
+  
+      # Update Gitops-portfolio-3d-k8s repository with the new Docker image tag accoring to the branch name
+      # I am using Branch strategy for environment management
+      - name: Update GitOps repository with new Docker image tag
+        uses: peter-evans/gitops@v2
+        # I am already writen depolyment.yaml file in the gitops-portfolio-3d-k8s repository 
+        # I want to update the Docker image tag and env: NODE_ENV value based on the branch name in deployment.yaml file
+        with:
+          repository: pavanclouds/gitops-portfolio-3d-k8s
+          branch: ${{ github.ref_name }} # Use the branch name as the target branch
+          file: k8s/deployment.yaml # Path to the deployment file in the GitOps repository
+          token: ${{ secrets.GITHUB_TOKEN }} # Use GitHub token for authentication
+          commit_message: "Update Docker image tag to adapaladocker/personal_portfolio_3d:${{ github.ref_name }}"
+          update: "image,env" # Update the image and env fields in the deployment file
+          # If you want to update the image and env fields in the deployment file
+          image: "adapaladocker/personal_portfolio_3d:${{ github.ref_name }}" # Update the image field with the new Docker image tag
+          env: "NODE_ENV=${{ github.ref_name }}" # Update the NODE_ENV field with the branch name
+  
+      - name: commit and push changes to GitOps repository
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com" # Use a generic email for GitHub Actions
+          # Add the changes to the GitOps repository
+          git add k8s/deployment.yaml
+          git commit -m "Update Docker image tag to adapaladocker/personal_portfolio_3d:${{ github.ref_name }}"
+          git push origin ${{ github.ref_name }} # Push the changes to the branch in the GitOps repository  
+        
   # Another stage to deploy the built project to github pages using gh-pages and custom domain
   deploy_to_github_pages:
     name: Deploy to GitHub Pages
