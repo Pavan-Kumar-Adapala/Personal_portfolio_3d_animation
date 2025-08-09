@@ -36,12 +36,18 @@ jobs:
         run: |
           mkdir -p Lint_report
           npx eslint -c eslint.config.js --format json -o Lint_report/eslint-report.json
+          npx eslint -c eslint.config.js --format @microsoft/eslint-formatter-sarif -o Lint_report/eslint-report.sarif .
       
       - name: Upload ESLint report
         uses: actions/upload-artifact@v4
         with:
           name: eslint-report
           path: Lint_report/eslint-report.json
+
+      - name: Upload SARIF report
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: Lint_report/eslint-report.sarif
 
   static_code_analysis:
     name: Run Static Code Analysis (SonarQube)
@@ -232,8 +238,8 @@ jobs:
           severity: CRITICAL,HIGH,MEDIUM,LOW
           exit-code: '0'
 
-      - name: View SARIF contents
-        run: cat trivy-test-results.sarif
+      # - name: View SARIF contents
+      #   run: cat trivy-test-results.sarif
 
       # Upload results for test image
       - name: Upload Trivy results (test vulnerable image)
