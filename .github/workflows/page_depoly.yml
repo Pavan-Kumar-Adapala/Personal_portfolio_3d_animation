@@ -165,6 +165,7 @@ jobs:
       actions: read
       contents: read
       packages: write # Required to push Docker images to Docker Hub
+      security-events: write # Required for vulnerability scanning
 
     steps:
       - name: Checkout code
@@ -194,7 +195,7 @@ jobs:
 
       # Scan the Docker image for vulnerabilities
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@v0.4.0
+        uses: aquasecurity/trivy-action@0.28.0
         with:
           image-ref: docker.io/adapaladocker/personal_portfolio_3d:${{ github.ref_name }} # Use the same tag as the pushed image
           format: sarif
