@@ -188,7 +188,9 @@ jobs:
           context: .
           file: Dockerfile
           push: false
-          tags: adapaladocker/personal_portfolio_3d:${{ github.ref_name }} # Tag the image with the branch name
+          tags: |
+            adapaladocker/personal_portfolio_3d:${{ github.ref_name }} # Tag the image with the branch name
+            adapaladocker/personal_portfolio_3d:${{ github.ref_name }}-${{ github.sha }} # Tag the image with the commit SHA
 
       # Scan the Docker image for vulnerabilities before pushing
       - name: Run Trivy vulnerability scanner
@@ -219,16 +221,6 @@ jobs:
         with:
           sarif_file: 'trivy-results.sarif'
 
-      - name: Print github workspace
-        run: |
-          echo "GitHub workspace: ${{ github.workspace }}"
-          echo "${{ github.ref_name }} is the branch name"
-
-      - name: Upload Docker image build logs
-        uses: actions/upload-artifact@v4
-        with:
-          name: docker-build-logs
-          path: ${{ github.workspace }}/docker-build.log # Adjust the path if necessary
 
       # Log in to Docker Hub
       - name: Log in to Docker Hub
@@ -245,7 +237,9 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: adapaladocker/personal_portfolio_3d:${{ github.ref_name }}      # Checkout GitOps repository
+          tags: |
+            adapaladocker/personal_portfolio_3d:${{ github.ref_name }}      # Checkout GitOps repository
+            adapaladocker/personal_portfolio_3d:${{ github.ref_name }}-${{ github.sha }} # Push the image with the branch name and commit SHA
       
       - name: Checkout GitOps repository
         uses: actions/checkout@v4
