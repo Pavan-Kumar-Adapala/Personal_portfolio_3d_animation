@@ -165,7 +165,7 @@ jobs:
       actions: read
       contents: read
       packages: write # Required to push Docker images to Docker Hub
-      security-events: write # Required for vulnerability scanning
+      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
 
     steps:
       - name: Checkout code
