@@ -188,7 +188,9 @@ jobs:
           context: .
           file: Dockerfile
           push: false
-          tags: adapaladocker/personal_portfolio_3d:${{ github.ref_name }} # Tag the image with the branch name
+          tags: |
+            adapaladocker/personal_portfolio_3d:${{ github.ref_name }}
+            adapaladocker/personal_portfolio_3d:${{ github.ref_name }}-${{ github.sha }}
 
       # Scan the Docker image for vulnerabilities before pushing
       - name: Run Trivy vulnerability scanner
@@ -219,16 +221,6 @@ jobs:
         with:
           sarif_file: 'trivy-results.sarif'
 
-      - name: Print github workspace
-        run: |
-          echo "GitHub workspace: ${{ github.workspace }}"
-          echo "${{ github.ref_name }} is the branch name"
-
-      - name: Upload Docker image build logs
-        uses: actions/upload-artifact@v4
-        with:
-          name: docker-build-logs
-          path: ${{ github.workspace }}/docker-build.log # Adjust the path if necessary
 
       # Log in to Docker Hub
       - name: Log in to Docker Hub
@@ -245,7 +237,9 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: adapaladocker/personal_portfolio_3d:${{ github.ref_name }}      # Checkout GitOps repository
+          tags: |
+            adapaladocker/personal_portfolio_3d:${{ github.ref_name }} 
+            adapaladocker/personal_portfolio_3d:${{ github.ref_name }}-${{ github.sha }}
       
       - name: Checkout GitOps repository
         uses: actions/checkout@v4
@@ -264,7 +258,7 @@ jobs:
       # Update image and env values in deployment.yaml
       - name: Update image and NODE_ENV
         run: |
-          yq -i '.spec.template.spec.containers[0].image = "adapaladocker/personal_portfolio_3d:${{ github.ref_name }}"' k8s/deployment.yaml
+          yq -i '.spec.template.spec.containers[0].image = "adapaladocker/personal_portfolio_3d:${{ github.ref_name }}-${{ github.sha }}"' k8s/deployment.yaml
           yq -i '.spec.template.spec.containers[0].env[] |= (select(.name == "NODE_ENV").value = "${{ github.ref_name }}")' k8s/deployment.yaml
 
       # Commit and push changes
