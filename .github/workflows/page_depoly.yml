@@ -258,9 +258,8 @@ jobs:
       # Update image and env values in deployment.yaml
       - name: Update image and NODE_ENV
         run: |
-          yq -i '.spec.template.spec.containers[0].image = "adapaladocker/personal_portfolio_3d:${{ github.ref_name }}-${{ github.sha }}"' k8s/deployment.yaml
-          yq -i '.spec.template.spec.containers[0].env[] |= (select(.name == "NODE_ENV").value = "${{ github.ref_name }}")' k8s/deployment.yaml
-
+          yq -i '(.spec.template.spec.containers[] | select(.name == "portfolio-3d-container").image) = "adapaladocker/personal_portfolio_3d:${{ github.ref_name }}-${{ github.sha }}"' k8s/deployment.yaml
+          yq -i '(.spec.template.spec.containers[] | select(.name == "portfolio-3d-container").env[] | select(.name == "NODE_ENV").value) = "${{ github.ref_name }}-${{ github.sha }}"' k8s/deployment.yaml
       # Commit and push changes
       - name: Commit and push changes
         run: |
