@@ -45,7 +45,7 @@ jobs:
           path: Lint_report/eslint-report.json
 
       - name: Upload SARIF report
-        uses: actions/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: Lint_report/eslint-report.sarif
 
