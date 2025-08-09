@@ -189,8 +189,8 @@ jobs:
           file: Dockerfile
           push: false
           tags: |
-            adapaladocker/personal_portfolio_3d:${{ github.ref_name }} # Tag the image with the branch name
-            adapaladocker/personal_portfolio_3d:${{ github.ref_name }}-${{ github.sha }} # Tag the image with the commit SHA
+            adapaladocker/personal_portfolio_3d:${{ github.ref_name }}
+            adapaladocker/personal_portfolio_3d:${{ github.ref_name }}-${{ github.sha }}
 
       # Scan the Docker image for vulnerabilities before pushing
       - name: Run Trivy vulnerability scanner
@@ -238,8 +238,8 @@ jobs:
           file: Dockerfile
           push: true
           tags: |
-            adapaladocker/personal_portfolio_3d:${{ github.ref_name }}      # Checkout GitOps repository
-            adapaladocker/personal_portfolio_3d:${{ github.ref_name }}-${{ github.sha }} # Push the image with the branch name and commit SHA
+            adapaladocker/personal_portfolio_3d:${{ github.ref_name }} 
+            adapaladocker/personal_portfolio_3d:${{ github.ref_name }}-${{ github.sha }}
       
       - name: Checkout GitOps repository
         uses: actions/checkout@v4
@@ -258,7 +258,7 @@ jobs:
       # Update image and env values in deployment.yaml
       - name: Update image and NODE_ENV
         run: |
-          yq -i '.spec.template.spec.containers[0].image = "adapaladocker/personal_portfolio_3d:${{ github.ref_name }}"' k8s/deployment.yaml
+          yq -i '.spec.template.spec.containers[0].image = "adapaladocker/personal_portfolio_3d:${{ github.ref_name }}-${{ github.sha }}"' k8s/deployment.yaml
           yq -i '.spec.template.spec.containers[0].env[] |= (select(.name == "NODE_ENV").value = "${{ github.ref_name }}")' k8s/deployment.yaml
 
       # Commit and push changes
