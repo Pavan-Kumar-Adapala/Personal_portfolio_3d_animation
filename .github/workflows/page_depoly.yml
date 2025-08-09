@@ -1,12 +1,10 @@
 # This yaml file is used to check linting and static code analysis
 name: static_code_analysis_pipeline
 on:
-  pull_request:
-    branches:
-      - development
   push:
     branches:
       - Prod
+      - development
   workflow_dispatch: null # manual trigger
 
 jobs:
@@ -236,7 +234,7 @@ jobs:
 
       - name: View SARIF contents
         run: cat trivy-results.sarif
-        
+
       # Upload results for test image
       - name: Upload Trivy results (test vulnerable image)
         uses: github/codeql-action/upload-sarif@v3
