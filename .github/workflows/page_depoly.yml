@@ -200,7 +200,21 @@ jobs:
           image-ref: docker.io/adapaladocker/personal_portfolio_3d:${{ github.ref_name }} # Use the same tag as the pushed image
           format: sarif
           output: trivy-results.sarif
+          severity: 'CRITICAL,HIGH,MEDIUM,LOW'
           exit-code: '0' # Do not fail the job if vulnerabilities are found, but report them
+      
+      - name: Verify Trivy scan results
+        run: |
+          if [ -f trivy-results.sarif ]; then
+            echo "Trivy scan results found."
+          else
+            echo "Trivy scan results not found."
+            exit 1
+          fi
+
+      - name: View SARIF contents
+        run: cat trivy-results.sarif
+
       # Upload the Trivy scan results
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
