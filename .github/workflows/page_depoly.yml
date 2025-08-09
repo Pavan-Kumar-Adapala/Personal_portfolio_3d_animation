@@ -1,4 +1,4 @@
-# this yaml file is used to check linting and static code analysis
+# This yaml file is used to check linting and static code analysis
 name: static_code_analysis_pipeline
 on:
   push:
@@ -156,6 +156,55 @@ jobs:
   #         tags: docker.pavanclouds.com/myapp:${{ github.ref_name }} # if you want to tag the image with the branch name
   #         #  docker.pavanclouds.com/myapp:latest
   
+  # Build and push Docker image to Docker Hub
+  build_and_push_docker_image_to_docker_hub:
+    name: Build and Push Docker Image to Docker Hub
+    runs-on: ubuntu-latest
+    needs: static_code_analysis
+    permissions:
+      actions: read
+      contents: read
+      packages: write # Required to push Docker images to Docker Hub
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      # Log in to Docker Hub
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          registry: docker.io
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }} # Use a personal access token for better security
+      
+      # Build and push the Docker image
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          tags: adapaladocker/personal_portfolio_3d:${{ github.ref_name }} # Tag the image with the branch name
+      - name: Log out from Docker Hub
+        run: docker logout
+
+      # Scan the Docker image for vulnerabilities
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@v0.4.0
+        with:
+          image-ref: docker.io/adapaladocker/personal_portfolio_3d:${{ github.ref_name }} # Use the same tag as the pushed image
+          format: sarif
+          output: trivy-results.sarif
+          exit-code: '0' # Do not fail the job if vulnerabilities are found, but report them
+      # Upload the Trivy scan results
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: 'trivy-results.sarif'
 
   # Another stage to deploy the built project to github pages using gh-pages and custom domain
   deploy_to_github_pages:
@@ -194,14 +243,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           # publish_branch: gh-pages
-
-
-  # upload_to_nexus:
-  #   name: Upload to Nexus Repository
-  #   # This job will only run if the static code analysis job is successful
-  #   # and the branch is Prod
-  #   # if: ${{ github.event.workflow_run.head_branch == 'Prod' }}
-  #   runs-on: ubuntu-latest
-  #   needs: static_code_analysis
-
-  
