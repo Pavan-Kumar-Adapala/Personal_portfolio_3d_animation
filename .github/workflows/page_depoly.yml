@@ -238,8 +238,8 @@ jobs:
           severity: CRITICAL,HIGH,MEDIUM,LOW
           exit-code: '0'
 
-      - name: View SARIF contents
-        run: cat trivy-test-results.sarif
+      # - name: View SARIF contents
+      #   run: cat trivy-test-results.sarif
 
       # Upload results for test image
       - name: Upload Trivy results (test vulnerable image)
