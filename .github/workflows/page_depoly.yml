@@ -251,7 +251,7 @@ jobs:
       - name: Update Docker image tag in deployment.yaml
         run: |
           sed -i "s|\(image:\s*\)adapaladocker/personal_portfolio_3d:[^[:space:]]*|\1adapaladocker/personal_portfolio_3d:${{ github.ref_name }}-${{ github.sha }}|" k8s/deployment.yaml
-          sed -i "s|\(name: NODE_ENV\s*value:\s*\).*|\1${{ github.ref_name }}|" k8s/deployment.yaml
+          sed -i '/name: NODE_ENV/{n;s|value:.*|value: "${{ github.ref_name }}"|}' k8s/deployment.yaml
         
       # Commit and push changes
       - name: Commit and push changes
