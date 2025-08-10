@@ -4,7 +4,6 @@ on:
   workflow_run:
     workflows: [SAST and CI Pipeline for Portfolio]
     types: [completed]
-    branches: [Prod]
 
 jobs:
   deploy_to_github_pages:
@@ -15,19 +14,21 @@ jobs:
       contents: write  # push to gh-pages
       pages: write     # deploy to GitHub Pages
       id-token: write  # authentication with GitHub Pages
+      actions: read   # read actions
 
     steps:
       - name: Install GitHub CLI
         run: sudo apt-get install -y gh
 
       - name: Download artifact from triggering workflow
-        run: |
-            gh run download ${{ github.event.workflow_run.id }} \
-            --repo ${{ github.repository }} \
-            --name vite-dist \
-            --dir ./dist
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/download-artifact@v5
+        with:
+            name: vite-dist
+            github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }} # token with actions:read permissions on target repo
+            repository: Pavan-Kumar-Adapala/${{ github.repository }} # Specify the repository where the artifact is stored
+            run-id: ${{ github.event.workflow_run.id }} # Use the run ID from the triggering workflow
+        # env:
+        #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # 2. Verify artifact contents
       - name: Verify artifact contents
