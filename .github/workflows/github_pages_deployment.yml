@@ -26,6 +26,7 @@ jobs:
         uses: actions/download-artifact@v5
         with:
             name: vite-dist
+            path: ./dist
             github-token: ${{ github.token }} # if the workflow in the same repository, use the default token
             run-id: ${{ github.event.workflow_run.id }} # Use the run ID from the triggering workflow
         # env:
@@ -38,7 +39,6 @@ jobs:
           ls -la 
           cd ..
           ls -la
-
 
       # 4. Add custom CNAME for GitHub Pages
       - name: Set up CNAME for GitHub Pages
