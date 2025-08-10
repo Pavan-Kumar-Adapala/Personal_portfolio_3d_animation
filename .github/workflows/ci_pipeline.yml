@@ -103,6 +103,7 @@ jobs:
         with:
           name: vite-dist
           path: dist/
+          retention-days: 1 # Retain the artifact for 1 day
 
   # Upload build artifacts to Nexus raw hosted repository
   # upload_build_artifacts_to_nexus:
