@@ -318,7 +318,7 @@ jobs:
   # deploy_to_github_pages:
   #   name: Deploy to GitHub Pages
   #   runs-on: ubuntu-latest
-  #   needs:  static_code_analysis
+  #   needs: update_docker_image_tag_in_gitops_repo
 
   #   permissions:
   #     contents: write # Required to push to the gh-pages branch
