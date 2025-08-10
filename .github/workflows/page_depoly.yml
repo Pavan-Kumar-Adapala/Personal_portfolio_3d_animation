@@ -1,5 +1,9 @@
-# This yaml file defines a GitHub Actions workflow for static code analysis and deployment of a personal portfolio project.
-name: static_code_analysis_pipeline
+# This yaml file defines a GitHub Actions workflow for SAST (Static Application Security Testing) and CI/CD pipeline.
+# It includes linting with ESLint, static code analysis with SonarQube, building a Docker image, pushing it to Docker Hub, and deploying the built project to GitHub Pages.
+# Author: Pavan Kumar Adapala
+# Date: 2025-06-15
+
+name: 'SAST and CI/CD Pipeline for Personal Portfolio 3D'
 on:
   push:
     branches:
@@ -7,14 +11,18 @@ on:
       - development
   workflow_dispatch: null # manual trigger
 
+# Global permissions for the workflow
+# These permissions are applied to all jobs in the workflow unless overridden
+permissions:
+  actions: read # Required to use actions like checkout, upload-artifact, etc.
+  contents: read # Required to read the repository contents
+
 jobs:
   linting:
     name: RUN ESLint
     runs-on: ubuntu-latest
     permissions:
-      actions: read
-      contents: read
-      security-events: write
+      security-events: write # Required to upload SARIF results to the GitHub Security tab
 
     steps:
       - name: Checkout code
@@ -53,9 +61,7 @@ jobs:
     name: Run Static Code Analysis (SonarQube)
     runs-on: ubuntu-latest
     needs: linting
-    permissions:
-      actions: read
-      contents: read
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -104,9 +110,6 @@ jobs:
   #   # This job will only run if the static code analysis job is successful
   #   runs-on: ubuntu-latest
   #   needs: static_code_analysis
-  #   permissions:
-  #     actions: read
-  #     contents: read
 
   #   steps:
   #     # Download the dist/ artifact from the previous job
@@ -136,8 +139,6 @@ jobs:
   #   runs-on: ubuntu-latest
   #   needs: static_code_analysis 
   #   permissions:
-  #     actions: read
-  #     contents: read
   #     packages: write # Required to push Docker images to Nexus
 
   #   steps:
@@ -160,18 +161,15 @@ jobs:
   #         context: .
   #         file: Dockerfile
   #         push: true
-  #         tags: docker.pavanclouds.com/myapp:${{ github.ref_name }} # if you want to tag the image with the branch name
-  #         #  docker.pavanclouds.com/myapp:latest
+  #         tags: docker.pavanclouds.com/personal_portfolio_3d:${{ github.ref_name }} # if you want to tag the image with the branch name
+  #         #  docker.pavanclouds.com/personal_portfolio_3d:latest
   
-  # Build and push Docker image to Docker Hub
-  build_and_push_docker_image_to_docker_hub:
-    name: Build and Push Docker Image to Docker Hub
+  # Docker image vulnerability scanning
+  docker_image_vulnerability_scanning:
+    name: Docker Image Vulnerability Scanning
     runs-on: ubuntu-latest
     needs: static_code_analysis
     permissions:
-      actions: read
-      contents: read
-      packages: write # Required to push Docker images to Docker Hub
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
 
     steps:
@@ -189,8 +187,8 @@ jobs:
           file: Dockerfile
           push: false
           tags: |
-            adapaladocker/personal_portfolio_3d:${{ github.ref_name }}
-            adapaladocker/personal_portfolio_3d:${{ github.ref_name }}-${{ github.sha }}
+            ${{ secrets.DOCKER_HUB_USERNAME }}/personal_portfolio_3d:${{ github.ref_name }}
+            ${{ secrets.DOCKER_HUB_USERNAME }}/personal_portfolio_3d:${{ github.ref_name }}-${{ github.sha }}
 
       # Scan the Docker image for vulnerabilities before pushing
       - name: Run Trivy vulnerability scanner
@@ -220,7 +218,24 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: 'trivy-results.sarif'
+ 
 
+  # Build and push Docker image to Docker Hub
+  build_and_push_docker_image_to_docker_hub:
+    name: Build and Push Docker Image to Docker Hub
+    runs-on: ubuntu-latest
+    needs: docker_image_vulnerability_scanning
+    permissions:
+      packages: write # Required to push Docker images to Docker Hub
+    
+    steps:
+      # checkout the code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Set up Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
       # Log in to Docker Hub
       - name: Log in to Docker Hub
@@ -238,9 +253,10 @@ jobs:
           file: Dockerfile
           push: true
           tags: |
-            adapaladocker/personal_portfolio_3d:${{ github.ref_name }} 
-            adapaladocker/personal_portfolio_3d:${{ github.ref_name }}-${{ github.sha }}
+            ${{ secrets.DOCKER_HUB_USERNAME }}/personal_portfolio_3d:${{ github.ref_name }}
+            ${{ secrets.DOCKER_HUB_USERNAME }}/personal_portfolio_3d:${{ github.ref_name }}-${{ github.sha }}
       
+      # Update the Docker image tag in the GitOps repository
       - name: Checkout GitOps repository
         uses: actions/checkout@v4
         with:
@@ -260,7 +276,39 @@ jobs:
           git add k8s/deployment.yaml
           git commit -m "Update Docker image tag & NODE_ENV for branch ${{ github.ref_name }}"
           git push origin ${{ github.ref_name }}
+
+      - name: Check if the push was successful
+        run: |
+          if [ $? -ne 0 ]; then
+            echo "Failed to push changes to GitOps repository."
+            exit 1
+          else
+            echo "Changes pushed successfully to GitOps repository."
+          fi
+      - name: Check GitHub variables inside build_and_push_docker_image_to_docker_hub job
+        run: |
+          echo "GITHUB_REPOSITORY: ${{ github.repository }}"
+          echo "GITHUB_REF_NAME: ${{ github.ref_name }}"
+          echo "GITHUB_SHA: ${{ github.sha }}"
+          echo "GITHUB_EVENT_NAME: ${{ github.event_name }}"
+          echo "GITHUB_WORKFLOW: ${{ github.workflow }}"
+          echo "GITHUB_RUN_ID: ${{ github.run_id }}"
   
+  # Check github variables are changing in every job 
+  check_github_variables:
+    name: Check GitHub Variables outside the commit
+    runs-on: ubuntu-latest
+    needs: build_and_push_docker_image_to_docker_hub
+
+    steps:
+      - name: Print GitHub variables
+        run: |
+          echo "GITHUB_REPOSITORY: ${{ github.repository }}"
+          echo "GITHUB_REF_NAME: ${{ github.ref_name }}"
+          echo "GITHUB_SHA: ${{ github.sha }}"
+          echo "GITHUB_EVENT_NAME: ${{ github.event_name }}"
+          echo "GITHUB_WORKFLOW: ${{ github.workflow }}"
+          echo "GITHUB_RUN_ID: ${{ github.run_id }}"
 
   # Another stage to deploy the built project to github pages using gh-pages and custom domain
   deploy_to_github_pages:
