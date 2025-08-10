@@ -36,12 +36,9 @@ jobs:
         run: |
           echo "Downloaded artifact contents:"
           ls -la 
-      # move the files to the dist directory
-      - name: Move files to dist directory
-        run: |
-          mkdir -p dist
-          mv ./* ./dist/
-          echo "Moved files to dist directory"
+          cd ..
+          ls -la
+
 
       # 4. Add custom CNAME for GitHub Pages
       - name: Set up CNAME for GitHub Pages
