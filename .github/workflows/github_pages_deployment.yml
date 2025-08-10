@@ -20,12 +20,13 @@ jobs:
     #   - name: Install GitHub CLI
     #     run: sudo apt-get install -y gh
 
+      # https://github.com/actions/download-artifact?tab=readme-ov-file#download-artifacts-from-other-workflow-runs-or-repositories
       - name: Download artifact from triggering workflow
         uses: actions/download-artifact@v4
         with:
             name: vite-dist
             github-token: ${{ github.token }} # if the workflow in the same repository, use the default token
-            repository: ${{ github.repository }} # Specify the repository where the artifact is stored
+            repository: ${{ github.event.workflow_run.repository.full_name }} # Specify the repository where the artifact is stored
             run-id: ${{ github.event.workflow_run.id }} # Use the run ID from the triggering workflow
         # env:
         #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
