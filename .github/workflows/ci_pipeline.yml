@@ -1,9 +1,9 @@
-# This yaml file defines a GitHub Actions workflow for SAST (Static Application Security Testing) and CI/CD pipeline.
-# It includes linting with ESLint, static code analysis with SonarQube, building a Docker image, pushing it to Docker Hub, and deploying the built project to GitHub Pages.
+# This yaml file defines a GitHub Actions workflow for SAST (Static Application Security Testing) and CI pipeline.
+# It includes linting with ESLint, static code analysis with SonarQube, building a Docker image, and pushing it to Docker Hub.
 # Author: Pavan Kumar Adapala
 # Date: 2025-06-15
 
-name: 'SAST and CI/CD Pipeline for Personal Portfolio 3D'
+name: 'SAST and CI Pipeline for Portfolio'
 on:
   push:
     branches:
