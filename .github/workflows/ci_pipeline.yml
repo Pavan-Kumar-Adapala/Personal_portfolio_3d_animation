@@ -104,6 +104,10 @@ jobs:
           name: vite-dist
           path: dist/
           retention-days: 1 # Retain the artifact for 1 day
+      
+      - name: Run id
+        run: |
+          echo "run-id: " ${{ github.event.workflow_run.id }}
 
   # Upload build artifacts to Nexus raw hosted repository
   # upload_build_artifacts_to_nexus:
