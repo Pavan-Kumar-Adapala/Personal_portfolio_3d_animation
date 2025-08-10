@@ -27,7 +27,7 @@ jobs:
         with:
             name: vite-dist
             github-token: ${{ github.token }} # if the workflow in the same repository, use the default token
-            repository: Personal_portfolio_3d_animation # Specify the repository where the artifact is stored
+            repository: Pavan-Kumar-Adapala/Personal_portfolio_3d_animation
             run-id: ${{ github.event.workflow_run.id }} # Use the run ID from the triggering workflow
         # env:
         #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
