@@ -1,6 +1,6 @@
 //import React from 'react';
 import { motion } from 'framer-motion';
-import { Heart, Code, Coffee } from 'lucide-react';
+import { Heart, Code, Coffee,  } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -18,7 +18,7 @@ const Footer = () => {
               Pavan Kumar Adapala
             </motion.div>
             <p className="text-gray-400">
-              DevOps Engineer passionate about cloud infrastructure, automation, 
+              DevOps Engineer passionate about cloud, automation (CI/CD), containerization, 
               and building scalable solutions that make a difference.
             </p>
           </div>
@@ -80,9 +80,6 @@ const Footer = () => {
             
             <div className="text-gray-400 text-center md:text-right">
               <p>&copy; {currentYear} pavanclouds.com. All rights reserved.</p>
-              <p className="text-sm mt-1">
-                Built with React, TypeScript, and Framer Motion
-              </p>
             </div>
           </div>
         </div>
