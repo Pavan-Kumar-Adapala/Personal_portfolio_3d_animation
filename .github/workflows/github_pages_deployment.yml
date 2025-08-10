@@ -1,7 +1,7 @@
 name: GitHub Pages Deployment Workflow
 on:
     workflow_run:
-        workflows: ["SAST and CI/CD Pipeline for Personal Portfolio 3D"]
+        workflows: [SAST and CI Pipeline for Portfolio]
         types:
             - completed
 
@@ -17,7 +17,7 @@ jobs:
       id-token: write # Required for authentication with GitHub Pages
 
     steps:
-      # Download the dist/ artifact from the previous job
+      # Download the dist/ artifact from the previous workflow
       - name: Download dist/ artifact
         uses: actions/download-artifact@v4
         with:
@@ -42,4 +42,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           # publish_branch: gh-pages
-          
