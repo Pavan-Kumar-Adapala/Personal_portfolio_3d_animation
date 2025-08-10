@@ -3,10 +3,8 @@ name: GitHub Pages Deployment Workflow
 on:
   workflow_run:
     workflows: [SAST and CI Pipeline for Portfolio]
-    types:
-      - completed
-    branches:
-      - Prod
+    types: [completed]
+    branches: [Prod]
 
 jobs:
   deploy_to_github_pages:
@@ -19,20 +17,23 @@ jobs:
       id-token: write  # authentication with GitHub Pages
 
     steps:
-      # 1. Download the artifact from the triggering workflow
-      - name: Download dist/ artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: vite-dist
-          path: ./dist
-          repository: ${{ github.repository }}
-          run-id: ${{ github.event.workflow_run.id }}
+      - name: Install GitHub CLI
+        run: sudo apt-get install -y gh
+
+      - name: Download artifact from triggering workflow
+        run: |
+            gh run download ${{ github.event.workflow_run.id }} \
+            --repo ${{ github.repository }} \
+            --name vite-dist \
+            --dir ./dist
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # 2. Verify artifact contents
       - name: Verify artifact contents
         run: |
           echo "Downloaded artifact contents:"
-          ls -la ./dist
+          ls -la 
 
       # 3. Zip downloaded artifact (optional if you really need it)
       - name: Zip downloaded artifact
