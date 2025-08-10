@@ -37,7 +37,7 @@ jobs:
         run: |
           echo "Downloaded artifact contents:"
           ls -la 
-          cd ..
+          cd dist
           ls -la
 
       # 4. Add custom CNAME for GitHub Pages
