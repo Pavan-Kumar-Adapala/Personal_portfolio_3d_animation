@@ -85,7 +85,7 @@ const About = () => {
                   <div className="w-full h-full bg-gray-800 rounded-full flex items-center justify-center">
                     <div className="text-6xl">
                       <img 
-                      src="/images/ADAS_CICD.png" 
+                      src="/images/profile.jpeg" 
                       alt="" 
                       />
                       </div>
