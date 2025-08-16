@@ -81,14 +81,15 @@ const About = () => {
                 transition={{ duration: 1, delay: 0.4 }}
                 className="relative"
               >
+                {/* Outer gradient circle */}
                 <div className="w-64 h-64 mx-auto bg-gradient-to-br from-blue-500 to-purple-500 rounded-full p-1">
-                  <div className="w-full h-full bg-gray-800 rounded-full flex items-center justify-center">
-                    <div className="text-6xl">
-                      <img 
+                  {/* Inner circle with profile image */}
+                  <div className="w-full h-full bg-gray-800 rounded-full overflow-hidden flex items-center justify-center">
+                    <img 
                       src="/images/profile.jpeg" 
-                      alt="" 
-                      />
-                      </div>
+                      alt="Profile" 
+                      className="w-full h-full object-cover" 
+                    />
                   </div>
                 </div>
 
