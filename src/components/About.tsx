@@ -83,7 +83,12 @@ const About = () => {
               >
                 <div className="w-64 h-64 mx-auto bg-gradient-to-br from-blue-500 to-purple-500 rounded-full p-1">
                   <div className="w-full h-full bg-gray-800 rounded-full flex items-center justify-center">
-                    <div className="text-6xl">🚀</div>
+                    <div className="text-6xl">
+                      <img 
+                      src="/images/ADAS_CICD.png" 
+                      alt="" 
+                      />
+                      </div>
                   </div>
                 </div>
 

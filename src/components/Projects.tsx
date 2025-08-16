@@ -79,7 +79,7 @@ const Projects = () => {
       title: 'Deployment of Django Web Application on AWS',
       description: 'Deployed the web application on a scalable 3-tier architecture, implementing Auto Scaling and an Elastic Load Balancer (ELB) to ensure a secure and scalable AWS infrastructure.',
       image: 'https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['AWS (CodePipeline, EC2, VPC, IAM, Route 53, Elastic Load Balancer, AutoScaling, RDS, S3, SES, CloudWatch)', 'Git', 'GitHub', 'Linux (Ubuntu)', 'Python & Bash scripting', 'Nginx Web Server'],
+      technologies: ['AWS (EC2, VPC, IAM, Route 53, Elastic Load Balancer, AutoScaling, RDS, S3, SES, CloudWatch)', 'Git', 'GitHub', 'Jenkins', 'Linux (Ubuntu)', 'Python & Bash scripting', 'Nginx Web Server'],
       architecture: '/images/aws_django.png', 
       // architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/aws_django.png?raw=true',
       github: '#',
