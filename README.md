@@ -3,7 +3,7 @@ This repository demonstrates two deployment approaches for my personal portfolio
 1. Serverless Depolyment
 2. GitOps-driven Depolyment
 
-## **Serverless Depolyment - GitHub Pages**
+## **1. Serverless Depolyment - GitHub Pages**
 
 This deployment serves the portfolio as a static website hosted on GitHub Pages, using CI/CD pipelines for automation.
 
@@ -227,7 +227,8 @@ CI/CD Pipeline:
 **Version Control:** Git, GitHub Branch Protection Rules
 
 ---
-## GitOps-driven Depolyment with ArgoCD
+
+## 2. GitOps-driven Depolyment with ArgoCD
 
 
 ### **Kubernetes Cluster Setup**
@@ -294,23 +295,27 @@ CI/CD Pipeline:
 
   Note: Please make sure cidr not conflict with your VPC cidr range
 
-  To start using your cluster, you need to run the following as a regular user:
-    mkdir -p $HOME/.kube
-    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+  #### To start using your cluster, you need to run the following as a regular user:
+  
+```bash
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+  ```
 
-  Install Calico CNI using manifest:
+  #### Install Calico CNI using manifest:
+
     kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.1/manifests/calico.yaml
 
   #### Then you can join any number of worker nodes by running the following on each as root
-  sudo kubeadm join <control-plane-private-ip>:6443 --token <token> --discovery-token-ca-cert-hash sha256:<hash>
+
+  ```bash
+    sudo kubeadm join <control-plane-private-ip>:6443 --token <token> --discovery-token-ca-cert-hash sha256:<hash>
+  ```
   
 
 ![Cluster info](./readme_imgs/argocd/k8s_cluster.png)
 
-![Master Node Secuirty Group List](./readme_imgs/argocd/master_sg.png)
-
-![Worker Node Secuirty Group List](./readme_imgs/argocd/worker_sg.png)
 
 ---
 
@@ -321,9 +326,11 @@ CI/CD Pipeline:
 3. Any new commit → automatic deployment/update
 
 ![CI Pipeline](./readme_imgs/argocd/ci_pipeline.png)
+
 ![ArgoCD sync](./readme_imgs/argocd/argocd.png)
 
 *Architecture Diagram:*
+
 ![GitOps Architecture](./readme_imgs/argocd/gitops.svg)
 
 ---
@@ -331,17 +338,23 @@ CI/CD Pipeline:
 ### **Networking & Access**
 
 * Configured **Kubernetes Services** (NodePort)
+
   ![ClusterIP type](./readme_imgs/argocd/clusterip_type.png)
   ![NodePort type](./readme_imgs/argocd/nodeport_type.png)
 
 * Integrated with **AWS ALB** manually for HTTPS + host-based routing
+
   ![Host condition](./readme_imgs/argocd/alb_listner.png)
+
   ![ALB Resource Map](./readme_imgs/argocd/ALB_Resourcemap.png)
 
 * Secured with Security Groups & SSL termination at ALB
+
   ![ALB secuirty group](./readme_imgs/argocd/alb_sg.png)
-  ![Raw hosted repository](./readme_imgs/raw_repo.png)
-  ![Docker hosted repository](./readme_imgs/docker_repo.png)
+
+  ![Master Node Secuirty Group List](./readme_imgs/argocd/master_sg.png)
+
+  ![Worker Node Secuirty Group List](./readme_imgs/argocd/worker_sg.png)
 
 
 ---
@@ -401,7 +414,7 @@ spec:
 
 ---
 
-# **📚 Key Tools & Technologies**
+# **Key Tools & Technologies**
 
 * **CI/CD:** GitHub Actions
 * **Security Tools:** SonarQube, Trivy
@@ -414,7 +427,7 @@ spec:
 ![Application](./readme_imgs/argocd/application.png)
 ---
 
-# **🔮 Future Enhancements**
+# **Future Enhancements**
 
 * Automate infra provisioning with **Terraform**
 * Replace manual ALB setup with **AWS Load Balancer Controller**
