@@ -1,31 +1,40 @@
-# **Personal Portfolio 3D Animation – DevOps Implementation Case Study**
+# **Web Application Depolyment Project**
+This repository demonstrates two deployment approaches for my personal portfolio project:
+1. Serverless Depolyment
+2. GitOps-driven Depolyment
 
-## **Overview**
+## **Serverless Depolyment using GitHub Pages**
 
-This project is my personal portfolio application, showcasing my skills in **frontend development** and **DevOps/cloud engineering**.
-It’s built using:
+This deployment serves the portfolio as a static website hosted on GitHub Pages, using CI/CD pipelines for automation.
 
-* **React** (frontend framework)
-* **TypeScript** (type-safe JavaScript)
-* **Framer Motion** (animations)
-* **Vite** (build tool)
+Tech Stack:
+* React, TypeScript, Framer Motion, Vite
+* GitHub Actions (CI/CD)
+* SonarQube (code quality)
+* Nexus Repository (artifact storage)
+* GitHub Pages (hosting with custom domain)
 
 ---
 
-## **🚀 DevOps & Cloud Implementation**
-
-* Implemented **GitHub Actions** workflows for:
+### **DevOps & Cloud Implementation**
 
 ![CI/CD pipeline](./readme_imgs/github_pipeline.png)
 
-  * **Linting** (Stage 01)
-  * **Static code analysis** with **SonarQube** (Stage 02)
-  * **Parallel build & artifact upload** to **Nexus Repository Manager** (Stage 03)
-  * **Automated deployment** to **GitHub Pages** with a custom domain (Stage 04)
+Push Code: Developer pushes to main or development branch.
+
+CI/CD Pipeline:
+
+* Linting and static code analysis via **SonarQube**
+
+* **Build optimized artifacts** with Vite
+
+* **Artifact Management**: Upload artifacts to **Nexus** raw repository
+
+* **Deployment**: Automatically deploy to **GitHub Pages** with a custom domain
 
 ---
 
-### **2. Static Code Analysis – SonarQube**
+#### **Static Code Analysis – SonarQube**
 
 * **Self-hosted SonarQube** server provisioned on Ubuntu.
 * Installed **Docker & Docker Compose** for containerized SonarQube and PostgreSQL.
@@ -130,7 +139,7 @@ It’s built using:
 
 ---
 
-### **3. Artifact Management – Nexus Repository**
+#### **Artifact Management – Nexus Repository**
 
 * Deployed **Sonatype Nexus** via Docker Compose.
 * Configured:
@@ -161,7 +170,7 @@ It’s built using:
     nexus-data: {}
   ```
 
-  #### Nexus server and ALB for Reverse proxy
+  ##### Nexus server and ALB for Reverse proxy
   ![Nexus server secuirty group](./readme_imgs/nexus_sg.png)
   ![ALB secuirty group](./readme_imgs/alb_sg.png)
   ![Raw hosted repository](./readme_imgs/raw_repo.png)
@@ -169,26 +178,25 @@ It’s built using:
 
 ---
 
-### **4. Deployment – GitHub Pages**
+#### **Deployment – GitHub Pages**
 
 * Automated deployment from `gh-pages` branch.
 * Configured **custom domain** and DNS settings for professional hosting.
-  #### Custom domain in github pages
+  ##### Custom domain in github pages
   - https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages
 
   ![GitHub Pages](./readme_imgs/github_pages.png)
 
 ---
 
-## **🛠 Infrastructure & Configuration Management**
+### **🛠 Infrastructure & Configuration Management**
 
 * Provisioned servers manually using **shell scripting** and **Docker Compose**.
 * Configured **security groups** for controlled access to SonarQube, Nexus, and ALB.
-* Wrote **multi-stage Dockerfile** for optimized application containerization.
 
 ---
 
-## **📌 Branching Strategy & Collaboration**
+### **📌 Branching Strategy & Collaboration**
 
 * Implemented **Git workflow best practices**:
 
@@ -207,17 +215,7 @@ It’s built using:
 
 ---
 
-## **🐳 Future Enhancements – GitOps**
-
-* Deploy Kubernetes cluster on AWS via **kubeadm**
-* Install **ArgoCD** for GitOps-based deployments:
-
-  * Automatic manifest updates
-  * Continuous sync to Kubernetes pods with new image versions
-
----
-
-## **Key DevOps Tools & Technologies**
+### **Key DevOps Tools & Technologies**
 
 **CI/CD:** GitHub Actions
 **Code Quality:** SonarQube
@@ -225,6 +223,12 @@ It’s built using:
 **Containerization:** Docker, Docker Compose
 **Hosting & Networking:** AWS ALB, GitHub Pages
 **Version Control:** Git, GitHub Branch Protection Rules
-**Future Work:** Kubernetes, ArgoCD, GitOps
+
 
 ![Architecture diagram](./readme_imgs/CI_CD.png)
+
+---
+
+## GitOps-driven Depolyment using ArgoCD
+
+* Wrote **multi-stage Dockerfile** for optimized application containerization.
