@@ -57,22 +57,72 @@ const Projects = () => {
 
   const projects = [
     {
+      title: 'GitOps-Driven CI/CD Pipeline with ArgoCD, Kubernetes, and AWS',
+      description: 'Designed and deployed a GitOps-driven CI/CD pipeline leveraging ArgoCD and Kubernetes (kubeadm) on AWS EC2. Integrated DevSecOps practices with code quality checks, container vulnerability scanning, and secure networking, while deploying a ReactJS web application in a declarative and automated manner.',
+      image: 'https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=800',
+      technologies: ['GitHub Actions', 'ArgoCD', 'Kubernetes (kubeadm)', 'AWS EC2', 'Docker', 'Docker Compose', 'SonarQube', 'Trivy', 'Nexus Repository', 'Bash', 'AWS ALB', 'DNS, NACLs, Security Groups, IAM', 'ReactJS', 'TypeScript', 'Tailwind CSS', 'Nginx'],
+      
+      architecture: '/images/gitops.svg',
+      github: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation',
+      demo: '/images/gitops.svg',
+      category: 'GitOps, ArgoCD, CI/CD, Kubernetes, AWS',
+      detailedDescription: [
+        'Built a multi-stage Dockerfile for optimized application containerization',
+        'Provisioned AWS EC2 instances and set up infrastructure services (SonarQube, Nexus Repository) using Docker Compose',
+        'Configured Kubernetes cluster with kubeadm, installed required components (CNI plugin, kubelet, kubectl, kubeadm)',
+        'Applied DevSecOps security:',
+        '  - SonarQube → Static Application Security Testing (SAST)',
+        '  - Trivy → Container vulnerability scanning',
+        '  - Linting → Syntax & code quality checks',
+        'Configured AWS ALB + NodePort Services for HTTPS and host-based routing',
+        'Applied least privilege principle with NACLs, Security Groups, IAM roles',
+        'Modified package.json to support deployment requirements',
+        'Deployed ReactJS application via Kubernetes manifests (Deployment + Service)',
+        'Automated deployment workflow with ArgoCD GitOps-based synchronization',
+      ],
+      metrics: {
+        VulnerabilityScanning: '100% of containers',
+        CodeQualityChecks: '100% of PRs',
+        DeploymentTimeReduction: '50%',
+        CostEfficiency: 'Reduced by 20% through optimized resource usage'   
+      }
+    },
+    {
       title: 'Optimization of CI/CD Processes and Monitoring Systems for Autonomous Parking Software Development (ADAS)',
       description: 'Streamlined testing and monitoring for ADAS software to enhance delivery reliability and reduced debugging time by 30%.',
       image: 'https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['Python & Bash Scripting', 'RESTAPIs', 'Jenkins', 'JFrog Artifactory', 'Git & Bitbucket', 'JIRA', 'Grafana', 'PostgreSQL'],
+      technologies: ['Jenkins', 'Grafana', 'JFrog Artifactory', 'Git & Bitbucket', 'JIRA', 'PostgreSQL', 'Python & Bash Scripting', 'RESTAPIs', 'Linux (Ubuntu)'],
       architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/ADAS_CICD.png?raw=true',
       github: '#',
       demo: '#',
       category: 'DevOps, CI/CD, ADAS',
       detailedDescription: [
         'Automated nightly CTC and smoke test pipelines by integrating Python scripts to extract test reports and generate visual summaries from artifacts, reducing debugging time by 30%',
-        'Co-developed a Jenkins pipeline for PDX container creation and flashing the Parking ECU (FPM Core), reducing manual effort and enhancing traceability in line with ISO 27001:2022 automotive data integrity standards',
+        'Co-developed a Jenkins pipeline for PDX container creation and flashing the Parking ECU (FPM Core), reducing manual effort and enhancing traceability in line with ISO 27001 automotive data integrity standards',
         'Developed a centralized Grafana dashboard using advanced PostgreSQL queries to monitor the development process in real time and support data-driven decision-making across parking software projects'
       ],
       metrics: {
         Reduceddebuggingtime: '30%',
-        Qualitystandard: 'ISO 27001:2022',
+        Qualitystandard: 'ISO 27001',
+      }
+    },
+    {
+      title: 'Hybrid Infrastructure Monitoring Stack',
+      description: 'Comprehensive monitoring and observability solution with custom dashboards, alerting, and performance analytics for cloud and on-premises infrastructure.',
+      image: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800',
+      technologies: ['Prometheus', 'Grafana', 'VMware', 'AWS', 'OpenVPN', 'Node Exporter', 'Nginx', 'Linux (RHEL 9)', 'Shell/Bash Scripting'],
+      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/prometheus_hybrid_monitoring_architecture.gif?raw=true',
+      github: 'https://github.com/Pavan-Kumar-Adapala/prometheus_hybrid_monitoring_proj',
+      demo: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/prometheus_hybrid_monitoring_architecture.gif?raw=true',
+      category: 'Monitoring and observability',
+      detailedDescription: [
+        'Designed a secure monitoring stack using Prometheus, Grafana, and Node Exporter to collect metrics from AWS EC2 and on-prem RHEL nodes via OpenVPN and Nginx reverse proxy, mirroring real-world hybrid infrastructure and improving observability across environments',
+        'Automated secure metric collection across AWS EC2 and on-prem RHEL nodes by integrating OpenVPN tunneling and Nginx reverse proxy into a centralized Prometheus-Grafana stack, enabling real-time observability and enforcing restricted access through fine-grained firewall rules'
+      ],
+      metrics: {
+        servers: 'AWS EC2, On-premises VM',
+        setupTimeReduced: '30%',
+        accessSecurity: 'Secured tunnel (VPN + reverse proxy)'
       }
     },
     {
@@ -97,25 +147,6 @@ const Projects = () => {
         uptime: '99.9%',
         operationalcostReduction: '25%',
         queryperformanceImprovement: '30%'
-      }
-    },
-    {
-      title: 'Hybrid Infrastructure Monitoring Stack',
-      description: 'Comprehensive monitoring and observability solution with custom dashboards, alerting, and performance analytics for cloud and on-premises infrastructure.',
-      image: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['Prometheus', 'Grafana', 'VMware', 'AWS', 'OpenVPN', 'Node Exporter', 'Nginx', 'Linux (RHEL 9)', 'Shell/Bash Scripting'],
-      architecture: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/prometheus_hybrid_monitoring_architecture.gif?raw=true',
-      github: 'https://github.com/Pavan-Kumar-Adapala/prometheus_hybrid_monitoring_proj',
-      demo: 'https://github.com/Pavan-Kumar-Adapala/Personal_portfolio_3d_animation_Images_files/blob/Prod/images/prometheus_hybrid_monitoring_architecture.gif?raw=true',
-      category: 'Monitoring and observability',
-      detailedDescription: [
-        'Designed a secure monitoring stack using Prometheus, Grafana, and Node Exporter to collect metrics from AWS EC2 and on-prem RHEL nodes via OpenVPN and Nginx reverse proxy, mirroring real-world hybrid infrastructure and improving observability across environments',
-        'Automated secure metric collection across AWS EC2 and on-prem RHEL nodes by integrating OpenVPN tunneling and Nginx reverse proxy into a centralized Prometheus-Grafana stack, enabling real-time observability and enforcing restricted access through fine-grained firewall rules'
-      ],
-      metrics: {
-        servers: 'AWS EC2, On-premises VM',
-        setupTimeReduced: '30%',
-        accessSecurity: 'Secured tunnel (VPN + reverse proxy)'
       }
     },
     {
