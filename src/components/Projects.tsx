@@ -59,7 +59,7 @@ const Projects = () => {
     {
       title: 'GitOps-Driven CI/CD Pipeline with ArgoCD, Kubernetes, and AWS',
       description: 'Designed and deployed a GitOps-driven CI/CD pipeline leveraging ArgoCD and Kubernetes (kubeadm) on AWS EC2. Integrated DevSecOps practices with code quality checks, container vulnerability scanning, and secure networking, while deploying a ReactJS web application in a declarative and automated manner.',
-      image: 'https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: '/images/gitops_cicd_gen.png',
       technologies: ['GitHub Actions', 'ArgoCD', 'Kubernetes (kubeadm)', 'AWS EC2', 'Docker', 'Docker Compose', 'SonarQube', 'Trivy', 'Nexus Repository', 'Bash', 'AWS ALB', 'DNS, NACLs, Security Groups, IAM', 'ReactJS', 'TypeScript', 'Tailwind CSS', 'Nginx'],
       
       architecture: '/images/gitops.svg',
