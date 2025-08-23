@@ -1,7 +1,7 @@
 name: Update S3 Bucket 
 on:
   workflow_run:
-    workflows: ["GitHub Pages Deployment Workflow"]   # must match the *name:* of your Pages workflow
+    workflows: ["SAST and CI Pipeline for Portfolio"]  # Build artifacts workflow name
     types:
       - completed
 
@@ -10,11 +10,13 @@ jobs:
         name: Update S3 Bucket floders and files
         runs-on: ubuntu-latest
         steps:
-            - name: Download GitHub Pages artifact
-              uses: actions/download-artifact@v4
+            - name: Download the artifacts from the triggering workflow
+              uses: actions/download-artifact@v5
               with:
-                name: github-pages   # 👈 Pages always uploads this artifact
+                name: vite-dist   # Name of the artifact to download
                 path: ./dist
+                github-token: ${{ github.token }} # if the workflow in the same repository, use the default token
+                run-id: ${{ github.event.workflow_run.id }} # Use the run ID from the
 
             - name: Configure AWS credentials
               uses: aws-actions/configure-aws-credentials@v2
