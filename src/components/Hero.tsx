@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown, Cloud, Server, GitBranch, Database, Package } from 'lucide-react';
+import { ChevronDown, Cloud, GitBranch, Database, Package } from 'lucide-react';
 
 const texts = ['Cloud Engineer', 'Junior DevOps Engineer', 'Site Reliability Engineer'];
 
