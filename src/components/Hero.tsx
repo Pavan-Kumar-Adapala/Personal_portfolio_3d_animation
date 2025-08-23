@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, Cloud, Server, GitBranch } from 'lucide-react';
 
-const texts = ['Cloud Engineer', 'DevOps Engineer', 'Site Reliability Engineer'];
+const texts = ['Cloud Engineer', 'Junior DevOps Engineer', 'Site Reliability Engineer'];
 
 const Hero = () => {
   const [currentText, setCurrentText] = useState('');
