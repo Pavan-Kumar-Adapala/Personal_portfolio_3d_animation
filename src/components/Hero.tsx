@@ -35,7 +35,6 @@ const Hero = () => {
 
   const floatingIcons = [
     { Icon: Cloud, delay: 0, x: 100, y: 50 },
-    /*{ Icon: Server, delay: 0.5, x: -80, y: 100 },*/
     { Icon: GitBranch, delay: 0.5, x: 150, y: 150 },
     { Icon: Database, delay: 1, x: 180, y: 200 },
     { Icon: Package, delay: 2, x: 200, y: 250 },
