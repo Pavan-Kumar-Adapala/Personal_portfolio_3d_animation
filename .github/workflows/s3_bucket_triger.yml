@@ -4,6 +4,7 @@ on:
     workflows: ["SAST and CI Pipeline for Portfolio"]  # Build artifacts workflow name
     types:
       - completed
+    branches: [Prod]
 
 jobs:
     update_s3_bucket:
