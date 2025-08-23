@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown, Cloud, Server, GitBranch } from 'lucide-react';
+import { ChevronDown, Cloud, Server, GitBranch, Database, Package } from 'lucide-react';
 
-const texts = ['Cloud Engineer', 'Junior DevOps Engineer', 'Site Reliability Engineer'];
+const texts = ['Cloud Engineer', 'DevOps Engineer', 'Site Reliability Engineer'];
 
 const Hero = () => {
   const [currentText, setCurrentText] = useState('');
@@ -37,6 +37,8 @@ const Hero = () => {
     { Icon: Cloud, delay: 0, x: 100, y: 50 },
     { Icon: Server, delay: 0.5, x: -80, y: 100 },
     { Icon: GitBranch, delay: 1, x: 150, y: 150 },
+    { Icon: Database, delay: 1.5, x: -120, y: 200 },
+    { Icon: Package, delay: 2, x: 200, y: -50 },
   ];
 
   return (
