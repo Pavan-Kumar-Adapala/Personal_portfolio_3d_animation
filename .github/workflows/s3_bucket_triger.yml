@@ -5,6 +5,8 @@ on:
     types:
       - completed
     branches: [Prod]
+permissions:
+  id-token: write
 
 jobs:
     update_s3_bucket:
@@ -20,11 +22,17 @@ jobs:
                 run-id: ${{ github.event.workflow_run.id }} # Use the run ID from the
 
             - name: Configure AWS credentials
-              uses: aws-actions/configure-aws-credentials@v2
+              uses: aws-actions/configure-aws-credentials@v4
               with:
-                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                  aws-region: ${{ secrets.AWS_REGION }}
+                role-to-assume: arn:aws:iam::481665128385:role/github_OIDC_s3
+                aws-region: ${{ secrets.AWS_REGION }}
+
+            # - name: Configure AWS credentials
+            #   uses: aws-actions/configure-aws-credentials@v2
+            #   with:
+            #       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            #       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            #       aws-region: ${{ secrets.AWS_REGION }}
 
             - name: Sync files to S3 bucket
               run: |
