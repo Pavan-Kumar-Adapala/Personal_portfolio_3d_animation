@@ -1,7 +1,8 @@
 # **Web Application Depolyment Project**
 This repository demonstrates two deployment approaches for my personal portfolio project:
-1. Serverless Depolyment
+1. Serverless Depolyment on GitHub Pages
 2. GitOps-driven Depolyment
+3. Serverless Static Website on AWS (S3 + CloudFront + GitHub Actions)
 
 ## **1. Serverless Depolyment - GitHub Pages**
 
@@ -436,3 +437,158 @@ spec:
 
 ---
 
+## **3. Serverless Static Website on AWS (S3 + CloudFront + GitHub Actions)**
+
+This project deploys a static app using **fully managed, serverless services**:
+
+* **Amazon S3** for object storage and hosting
+* **Amazon CloudFront** (with **OAC**) for secure, global CDN delivery
+* **AWS WAF** for edge security
+* **GitHub Actions** for CI/CD
+
+Because this is **serverless**, AWS handles availability, scaling, TLS, patching, and fleet management—**reducing operational overhead** to near-zero.
+
+> **Architecture**
+>
+> ![Serverless architecture](./readme_imgs/serverless_arch.svg)
+
+---
+
+### Approach 1 — S3 Static Website Hosting (Public, simple)
+
+1. Create S3 bucket
+  * **Enable Static Website Hosting**
+  * **Disable Block Public Access**
+2. Apply bucket policy (example with IP allowlist):
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "PublicReadForStaticWebsite",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::pavan-portfolio-app-testing/*",
+      "Condition": {
+        "IpAddress": { "aws:SourceIp": "103.45.22.0/24" }
+      }
+    }
+  ]
+}
+```
+
+3. CI GitHub Action pipeline (.github/workflows/s3_bucket_triger.yml) uploads build artifacts to S3
+
+4. Test: `http://pavan-portfolio-app-testing.s3-website.us-east-2.amazonaws.com`
+
+> Fast to set up.
+> ⚠️ Bucket must be public; HTTP only; fewer security controls at the edge.
+
+---
+
+### Approach 2 — **Recommended (Production)**: S3 (private) + **CloudFront + OAC** + WAF
+
+**S3**
+
+* **Block Public Access: ON**
+* **Static website hosting: OFF** (use S3 as an origin only)
+
+**OAC**
+
+* CloudFront Console → *Security → Origin access control* → **Create OAC**
+
+**CloudFront**
+
+* Create Distribution → *Single website or app*
+* Origin = your S3 bucket
+* **Enable WAF**
+* **Default Root Object** = `index.html`
+
+**Bucket policy** (auto-created when attaching OAC):
+
+```json
+{
+  "Version": "2008-10-17",
+  "Id": "PolicyForCloudFrontPrivateContent",
+  "Statement": [
+    {
+      "Sid": "AllowCloudFrontServicePrincipal",
+      "Effect": "Allow",
+      "Principal": { "Service": "cloudfront.amazonaws.com" },
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::pavan-portfolio-app-testing/*",
+      "Condition": {
+        "ArnLike": {
+          "AWS:SourceArn": "arn:aws:cloudfront::481665128385:distribution/E31HPGJ4YNG9WU"
+        }
+      }
+    }
+  ]
+}
+```
+
+Test: `https://d1zh3trwd3hjm7.cloudfront.net/`
+
+> ✅ **Serverless & secure by default** (private S3, TLS via CloudFront, edge caching, WAF).
+> ✅ Lowest operational overhead for production.
+
+---
+
+### Why this is “Serverless” (and lower operations)
+
+* **No servers to manage** — S3/CloudFront/WAF are fully managed.
+* **Automatic scaling** — Global edge network + S3 durability/throughput.
+* **Built-in reliability** — Multi-AZ backing and global Points of Presence (POPs).
+* **Security at the edge** — OAC keeps S3 private; WAF blocks bad traffic.
+* **Pay for what you use** — Storage + requests + data transfer.
+
+---
+
+**1. Create an IAM Identity Provider in your AWS account for GitHub OIDC**
+To use GitHub's OIDC provider, you must first set up federation in your AWS account. This involves creating an IAM Identity Provider that trusts GitHub's OIDC endpoint.
+- You can create an IAM Identity Provider in the AWS Management Console 
+- You can also create the IAM Identity Provider using the AWS CLI
+
+aws iam create-open-id-connect-provider --url https://token.actions.githubusercontent.com --client-id-list sts.amazonaws.com 
+Output:
+  "OpenIDConnectProviderArn": "arn:aws:iam::481665128385:oidc-provider/token.actions.githubusercontent.com"
+
+**2. Create an IAM Role in your AWS account with a trust policy that allows GitHub Actions to assume it:**
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Federated": "arn:aws:iam::<AWS_ACCOUNT_ID>:oidc-provider/token.actions.githubusercontent.com"
+      },
+      "Action": "sts:AssumeRoleWithWebIdentity",
+      "Condition": {
+        "StringEquals": {
+          "token.actions.githubusercontent.com:aud": "sts.amazonaws.com",
+          "token.actions.githubusercontent.com:sub": "repo:<GITHUB_ORG>/<GITHUB_REPOSITORY>:ref:refs/heads/<GITHUB_BRANCH>"
+        }
+      }
+    }
+  ]
+}
+```
+**3. Attach permissions to the IAM Role that allow it to access the AWS resources you need**
+**4. Add the following to your GitHub Actions workflow**
+```yaml
+permissions:
+  id-token: write
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@main # Or a specific version
+        with:
+          role-to-assume: <Role ARN you created in step 2>
+          aws-region: <AWS Region you want to use>
+
+      - name: Sync files to S3 bucket
+        run: |
+          aws s3 sync ./dist s3://${{ secrets.AWS_S3_BUCKET_NAME }} --exclude ".git/*" --delete
+```
